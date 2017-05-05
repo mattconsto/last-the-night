@@ -116,7 +116,7 @@ public class SimplexTexture : MonoBehaviour {
 		
 		// Create texture
 		Texture2D texture = new Texture2D (resolution, resolution);
-		texture.filterMode = FilterMode.Point;
+		//texture.filterMode = FilterMode.Point;
 		texture.wrapMode = TextureWrapMode.Clamp;
 		texture.SetPixels(colors);
 		texture.Apply();
