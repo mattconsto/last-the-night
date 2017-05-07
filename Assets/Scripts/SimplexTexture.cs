@@ -112,6 +112,7 @@ public class SimplexTexture : MonoBehaviour {
 				}
 			}
 			GetComponent<MeshFilter>().sharedMesh = meshData.CreateMesh();
+			GetComponent<MeshCollider>().sharedMesh = GetComponent<MeshFilter>().sharedMesh;
 		}
 		
 		// Create texture
@@ -124,9 +125,9 @@ public class SimplexTexture : MonoBehaviour {
 		GetComponent<MeshRenderer>().sharedMaterial.mainTexture = texture;
 	}
 
-	//public void Awake() {if(update) RenderTexture();}
-	//public void Start() {if(update) RenderTexture();}
-	//public void OnValidate() {if(update) RenderTexture();}
+	public void Awake() {if(update) RenderTexture();}
+	public void Start() {if(update) RenderTexture();}
+	public void OnValidate() {if(update) RenderTexture();}
 }
 
 [System.Serializable]
