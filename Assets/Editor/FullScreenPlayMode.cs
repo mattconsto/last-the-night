@@ -33,7 +33,7 @@ public class FullscreenPlayMode : MonoBehaviour {
 	static void FullScreenGameWindow() {
 		EditorWindow gameView = GetMainGameView();
 
-		gameView.title = "Game (Stereo)";
+		gameView.titleContent = new GUIContent("Game");
 		Rect newPos = new Rect(0 - 1, 0 - tabHeight - tabOffset - Screen.currentResolution.height, Screen.currentResolution.width + 2, Screen.currentResolution.height + tabHeight);
 
 		gameView.position = newPos;

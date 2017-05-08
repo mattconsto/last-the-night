@@ -61,7 +61,6 @@ public class IcoSphere : MonoBehaviour
  
         List<Vector3> vertList = new List<Vector3>();
         Dictionary<long, int> middlePointIndexCache = new Dictionary<long, int>();
-        int index = 0;
  
         int recursionLevel = 3;
         float radius = 1f;
