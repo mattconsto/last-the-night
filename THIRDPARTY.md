@@ -13,7 +13,12 @@ Third Party Notices
 
 ## Models
 
+* [Angel Statue by Busina (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/27594)
+* [Level 1 Monsters by PI Entertainment Limited (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/77703)
 * [Low Poly: Free Pack by AxeyWorks (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/58821)
+* [Space Shooter by Unity Technologies (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/13866)
+* [Spider Green by PolyNext (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/11869)
+* [Weapons Pack by KenneyNL (CC0 1.0)](https://kenney.nl/assets/weapon-pack)
 
 ## Scripts
 
