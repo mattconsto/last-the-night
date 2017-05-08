@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public float sensitivity = 2;
 
 	public GameObject cam;
+	public GameObject torch;
 
 	public void Start () {
 		_rb = GetComponent<Rigidbody>();
@@ -30,7 +31,11 @@ public class PlayerController : MonoBehaviour {
             _rb.AddForce(transform.up * jump);
         }
 
-        if (Input.GetButton("Cancel")) {
+        if(Input.GetButtonDown("Submit")) {
+            torch.SetActive(!torch.activeSelf);
+        }
+
+        if (Input.GetButtonDown("Cancel")) {
             #if UNITY_EDITOR
                         UnityEditor.EditorApplication.isPlaying = false;
             #else
