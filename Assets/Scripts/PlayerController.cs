@@ -35,13 +35,11 @@ public class PlayerController : MonoBehaviour {
             torch.SetActive(!torch.activeSelf);
         }
 
+        #if !UNITY_EDITOR
         if (Input.GetButtonDown("Cancel")) {
-            #if UNITY_EDITOR
-                        UnityEditor.EditorApplication.isPlaying = false;
-            #else
-			            Application.Quit();
-            #endif
+	       Application.Quit();
         }
+        #endif
 	}
 
     public void OnCollisionEnter(Collision col) {
