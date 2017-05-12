@@ -7,7 +7,7 @@ public class InfiniteTerrain : MonoBehaviour {
 	public Transform viewer;
 	public Material material;
 
-	public SimplexTexture generator;
+	public ChunkGenerator generator;
 	public LODInfo[] lods;
 
 	private Dictionary<Vector2, TerrainChunk> chunks = new Dictionary<Vector2, TerrainChunk>();
@@ -19,7 +19,7 @@ public class InfiniteTerrain : MonoBehaviour {
 
 	public void Start() {
 		viewDistance = lods[lods.Length-1].threshold;
-		chunkSize = SimplexTexture.resolution - 1;
+		chunkSize = ChunkGenerator.resolution - 1;
 		chunksVisble = Mathf.CeilToInt(viewDistance / chunkSize);
 		UpdateChunks();
 	}
@@ -68,14 +68,15 @@ public class InfiniteTerrain : MonoBehaviour {
 		private bool _visible;
 		private MeshFilter   _mf;
 		private MeshRenderer _mr;
-		private SimplexTexture generator;
+		private MeshCollider _mc;
+		private ChunkGenerator generator;
 
 		public bool visible {
 			get {return _visible;}
 			set {_visible = value; gameObject.SetActive(_visible);}
 		}
 
-		public TerrainChunk(Vector2 coord, int size, LODInfo[] lods, Transform parent, Material material, SimplexTexture generator) {
+		public TerrainChunk(Vector2 coord, int size, LODInfo[] lods, Transform parent, Material material, ChunkGenerator generator) {
 			this.position = coord * size;
 			this.bounds = new Bounds(position, Vector3.one * size);
 			this.lods = lods;
@@ -88,7 +89,8 @@ public class InfiniteTerrain : MonoBehaviour {
 			gameObject = new GameObject("Terrain Chunk");
 			_mf = gameObject.AddComponent<MeshFilter>();
 			_mr = gameObject.AddComponent<MeshRenderer>();
-			_mr.material = material;
+			_mc = gameObject.AddComponent<MeshCollider>();
+			_mr.material = new Material(material);
 			gameObject.transform.position = new Vector3(position.x, 0, position.y);
 			gameObject.transform.parent = parent;
 			visible = false;
@@ -100,8 +102,6 @@ public class InfiniteTerrain : MonoBehaviour {
 		public void OnMapReceived(MapData map) {
 			this.map = map;
 			recieved = true;
-
-			//this.generator.RequestMeshData(map, 0, OnMeshReceived);
 			
 			// Create texture
 			Texture2D texture = new Texture2D (map.noise.GetLength(0), map.noise.GetLength(1));
@@ -115,6 +115,7 @@ public class InfiniteTerrain : MonoBehaviour {
 
 		public void OnMeshReceived(MeshData mesh) {
 			_mf.sharedMesh = mesh.CreateMesh();
+			_mc.sharedMesh = _mf.sharedMesh;
 		}
 
 		public void UpdateChunk() {
@@ -128,16 +129,15 @@ public class InfiniteTerrain : MonoBehaviour {
 				for(int i = 0; i < lods.Length; i++) {
 					if(distanceFromEdge > lods[i].threshold) {
 						index = i + 1;
-					} else {
-						break;
-					}
+					} else break;
 				}
 
 				if(index != previousLOD) {
 					LODMesh mesh = lodMeshs[index];
 					if(mesh.recieved) {
 						previousLOD = index;
-						_mf.mesh = mesh.mesh;
+						_mf.sharedMesh = mesh.mesh;
+						_mc.sharedMesh = mesh.mesh;
 					} else if(!mesh.requested) {
 						mesh.Request(map);
 					}
@@ -146,34 +146,3 @@ public class InfiniteTerrain : MonoBehaviour {
 		}
 	}
 }
-
-public class LODMesh {
-	public Mesh mesh;
-	public bool requested;
-	public bool recieved;
-	public int lod;
-
-	private SimplexTexture generator;
-
-	public LODMesh(int lod, SimplexTexture generator) {
-		this.lod = lod;
-		this.generator = generator;
-	}
-
-	public void OnMeshReceived(MeshData mesh) {
-		this.mesh = mesh.CreateMesh();
-		recieved = true;
-	}
-
-	public void Request(MapData map) {
-		generator.RequestMeshData(map, lod, OnMeshReceived);
-		requested = true;
-	}
-}
-
-[System.Serializable]
-public struct LODInfo {
-	public int lod;
-	public float threshold;
-}
-
