@@ -389,17 +389,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewer: {fileID: 2053036849}
-  material: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: 18c659b4ca172f94aa11ef18892f3f7d, type: 2}
   generator: {fileID: 1568253743}
   lods:
-  - lod: 2
-    threshold: 150
   - lod: 4
-    threshold: 200
-  - lod: 8
     threshold: 300
-  - lod: 32
+  - lod: 8
     threshold: 400
+  - lod: 32
+    threshold: 500
   chunkSize: 0
   chunksVisble: 0
 --- !u!4 &1568253742
