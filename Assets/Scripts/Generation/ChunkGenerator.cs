@@ -30,14 +30,14 @@ public class ChunkGenerator : MonoBehaviour {
 	public float[,] GenerateNoise(int width, int height, float scale, Vector2 offset) {
 		System.Random rng = new System.Random(seed);
 		Vector2[] offsets = new Vector2[octaves];
-		
+
 		for(int o = 0; o < octaves; o++) {
 			offsets[o] = new Vector2(rng.Next(10000, 20000) + offset.x * width, rng.Next(10000, 20000) - offset.y * height);
 		}
 
 		float[,] values = new float[width, height];
-		for(int i = 0; i < width; i++) {
-			for(int j = 0; j < height; j++) {
+		for(int j = 0; j < height; j++) {
+			for(int i = 0; i < width; i++) {
 				float amplitude = 1;
 				float frequency = 1;
 

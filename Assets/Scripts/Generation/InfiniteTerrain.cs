@@ -77,8 +77,8 @@ public class InfiniteTerrain : MonoBehaviour {
 		}
 
 		public TerrainChunk(Vector2 coord, int size, LODInfo[] lods, Transform parent, Material material, ChunkGenerator generator) {
-			this.position = coord * size;
-			this.bounds = new Bounds(position, Vector3.one * size);
+			this.position = coord * (size - 2*2*4);
+			this.bounds = new Bounds(position, Vector3.one * (size + 2*2*4));
 			this.lods = lods;
 			this.lodMeshs = new LODMesh[lods.Length];
 
@@ -96,7 +96,7 @@ public class InfiniteTerrain : MonoBehaviour {
 			visible = false;
 
 			this.generator = generator;
-			this.generator.RequestMapData(OnMapReceived, coord);
+			this.generator.RequestMapData(OnMapReceived, position / size);
 		}
 
 		public void OnMapReceived(MapData map) {
