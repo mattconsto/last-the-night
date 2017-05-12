@@ -187,7 +187,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 4519297}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 6.45, z: 0}
+  m_LocalPosition: {x: 0, y: 6.3, z: 0}
   m_LocalScale: {x: 100000, y: 100000, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -392,13 +392,13 @@ MonoBehaviour:
   material: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   generator: {fileID: 1568253743}
   lods:
-  - lod: 1
-    threshold: 100
   - lod: 2
-    threshold: 200
+    threshold: 150
   - lod: 4
-    threshold: 300
+    threshold: 200
   - lod: 8
+    threshold: 300
+  - lod: 32
     threshold: 400
   chunkSize: 0
   chunksVisble: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d6de4e675c3ea4798169b9142baf30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: {x: 50, y: 23.3}
+  scale: {x: 400, y: 40}
   octaves: 4
   persistance: 0.417
   lacunarity: 2.7
@@ -441,10 +441,16 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.9958191
-      value: 1
-      inSlope: 1.409248
-      outSlope: 1.409248
+      time: 0.53866124
+      value: 0.19124085
+      inSlope: 0.27280372
+      outSlope: 0.27280372
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 2.1859536
+      value: 10.807733
+      inSlope: 6.820043
+      outSlope: 6.820043
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -455,11 +461,20 @@ MonoBehaviour:
     threshold: 0.5
     color: {r: 0.8470589, g: 0.8431373, b: 0.54509807, a: 0}
   - name: Grass
-    threshold: 0.7
+    threshold: 0.65
     color: {r: 0.3529412, g: 0.5921569, b: 0.09411766, a: 0}
   - name: Trees
-    threshold: 1
+    threshold: 0.75
     color: {r: 0.25490198, g: 0.41960788, b: 0.078431375, a: 0}
+  - name: Rocks
+    threshold: 0.85
+    color: {r: 0.375, g: 0.22469573, b: 0.08823529, a: 0}
+  - name: Mountains
+    threshold: 0.95
+    color: {r: 0.24264705, g: 0.18810932, b: 0.13916522, a: 0}
+  - name: Snow
+    threshold: 1000
+    color: {r: 0.98534817, g: 0.991439, b: 0.99264705, a: 0}
 --- !u!1 &1685657383
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +650,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2053036843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223, y: 9.81, z: -1853.5}
+  m_LocalPosition: {x: 223, y: 100, z: -1853.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1055743711}

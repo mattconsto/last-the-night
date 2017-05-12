@@ -8,7 +8,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ChunkGenerator : MonoBehaviour {
 	[Range(1, 500)]
-	public const int resolution = 65;
+	public const int resolution = 129;
 	public Vector2 scale = new Vector2(20, 20);
 	[Range(1, 8)]
 	public int octaves = 1;
@@ -27,10 +27,13 @@ public class ChunkGenerator : MonoBehaviour {
 	public Queue<ThreadData<MapData>> mapQueue = new Queue<ThreadData<MapData>>();
 	public Queue<ThreadData<MeshData>> meshQueue = new Queue<ThreadData<MeshData>>();
 
-	public float[,] GenerateNoise(int width, int height, float scale, Vector2 center) {
+	public float[,] GenerateNoise(int width, int height, float scale, Vector2 offset) {
 		System.Random rng = new System.Random(seed);
 		Vector2[] offsets = new Vector2[octaves];
-		for(int o = 0; o < octaves; o++) offsets[o] = new Vector2(rng.Next(10000, 20000), rng.Next(10000, 20000)) + center;
+		
+		for(int o = 0; o < octaves; o++) {
+			offsets[o] = new Vector2(rng.Next(10000, 20000) + offset.x * width, rng.Next(10000, 20000) - offset.y * height);
+		}
 
 		float[,] values = new float[width, height];
 		for(int i = 0; i < width; i++) {
@@ -40,9 +43,9 @@ public class ChunkGenerator : MonoBehaviour {
 
 				for(int o = 0; o < octaves; o++) {
 					values[i, j] += Mathf.PerlinNoise(
-						(i - width  / 2) / scale * frequency + offsets[o].x,
-						(j - height / 2)/ scale * frequency + offsets[o].y
-					) * amplitude;
+						(i - width  / 2 + offsets[o].x) / scale * frequency,
+						(j - height / 2 + offsets[o].y) / scale * frequency
+					) * amplitude; 
 
 					amplitude *= persistance;
 					frequency *= lacunarity;
@@ -50,25 +53,17 @@ public class ChunkGenerator : MonoBehaviour {
 			}
 		}
 
-		// Normalise
-		float maximum = values.Cast<float>().Max(), minimum = values.Cast<float>().Min();
-		for(int i = 0; i < width; i++) {
-			for(int j = 0; j < height; j++) {
-				values[i,j] = Mathf.InverseLerp(minimum, maximum, values[i,j]);
-			}
-		}
-
 		return values;
 	}
 
-	public void RequestMapData(Action<MapData> callback, Vector2 center) {
-		ThreadStart threadStart = delegate {MapDataThread(callback, center);};
+	public void RequestMapData(Action<MapData> callback, Vector2 offset) {
+		ThreadStart threadStart = delegate {MapDataThread(callback, offset);};
 		new Thread(threadStart).Start();
 	}
 
-	public void MapDataThread(Action<MapData> callback, Vector2 center) {
+	public void MapDataThread(Action<MapData> callback, Vector2 offset) {
 		lock (mapQueue) {
-			MapData data = GenerateMapData(center);
+			MapData data = GenerateMapData(offset);
 			mapQueue.Enqueue(new ThreadData<MapData>(callback, data));
 		}
 	}
@@ -85,8 +80,8 @@ public class ChunkGenerator : MonoBehaviour {
 		}
 	}
 
-	public MapData GenerateMapData(Vector2 center) {
-		float[,] noise = GenerateNoise(resolution, resolution, scale.x, center);
+	public MapData GenerateMapData(Vector2 offset) {
+		float[,] noise = GenerateNoise(resolution, resolution, scale.x, offset);
 		Color[] colors = TextureGenerator.DrawColor(noise, regions);
 		return new MapData(noise, colors);
 	}
