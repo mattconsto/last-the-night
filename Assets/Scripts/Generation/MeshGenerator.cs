@@ -14,19 +14,9 @@ public class MeshGenerator {
 		for(int y = 0; y < height; y += increment) {
 			for(int x = 0; x < width; x += increment) {
 				float evaluated = curve.Evaluate(noise[x,y]) * scale.y;
-
-				/*if(x < InfiniteTerrain.seamOverlap) {
-					evaluated -= (InfiniteTerrain.seamOverlap - x) * 1.1f;
-				} else if(x > width - InfiniteTerrain.seamOverlap - 1) {
-					evaluated -= (InfiniteTerrain.seamOverlap - (width - 1 - x)) * 1.1f;
-				} else if(y < InfiniteTerrain.seamOverlap) {
-					evaluated -= (InfiniteTerrain.seamOverlap - y) * 1.1f;
-				} else if(y > height - InfiniteTerrain.seamOverlap - 1) {
-					evaluated -= (InfiniteTerrain.seamOverlap - (height - 1 - y)) * 1.1f;
-				}*/
-
+				
 				if(x <= 0 || y <= 0 || x >= width - 4 || y >= height - 4) {
-					evaluated = 0;
+					evaluated /= 1.2f;
 				}
 
 				meshData.vertices[vertIndex] = new Vector3(vertOffset.x + x, evaluated, vertOffset.y - y);
