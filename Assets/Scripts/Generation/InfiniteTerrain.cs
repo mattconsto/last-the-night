@@ -31,8 +31,8 @@ public class InfiniteTerrain : MonoBehaviour {
 
 	public void UpdateChunks() {
 		Vector2 currentChunkCoord = new Vector2(
-			Mathf.RoundToInt(viewerPosition.x / chunkSize),
-			Mathf.RoundToInt(viewerPosition.y / chunkSize)
+			Mathf.RoundToInt(viewerPosition.x / (chunkSize - 2*2*4)),
+			Mathf.RoundToInt(viewerPosition.y / (chunkSize - 2*2*4))
 		);
 
 		for(int i = 0; i < lastChunks.Count; i++) {
