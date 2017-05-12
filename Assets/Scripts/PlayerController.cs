@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-		_rb.MovePosition(_rb.position + transform.right * Input.GetAxis("Horizontal") * speed);
-		_rb.MovePosition(_rb.position + transform.forward * Input.GetAxis("Vertical") * speed);
+		_rb.AddForce(transform.right * Input.GetAxis("Horizontal") * speed, ForceMode.Impulse);
+		_rb.AddForce(transform.forward * Input.GetAxis("Vertical") * speed, ForceMode.Impulse);
 		transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity);
 		cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
         cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
