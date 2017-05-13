@@ -1742,11 +1742,11 @@ MonoBehaviour:
   generator: {fileID: 1568253743}
   lods:
   - lod: 4
-    threshold: 300
+    threshold: 200
   - lod: 8
-    threshold: 400
+    threshold: 300
   - lod: 32
-    threshold: 500
+    threshold: 400
   chunkSize: 0
   chunksVisble: 0
 --- !u!4 &1568253742
