@@ -31,7 +31,7 @@ public class ChunkGenerator : MonoBehaviour {
 		Vector2[] offsets = new Vector2[octaves];
 
 		for(int o = 0; o < octaves; o++) {
-			offsets[o] = new Vector2(rng.Next(10000, 20000) + offset.x * width, rng.Next(10000, 20000) - offset.y * height);
+			offsets[o] = new Vector2(rng.NextFloat(0, 10000) + offset.x * width, rng.Next(0, 10000) - offset.y * height);
 		}
 
 		float[,] values = new float[width, height];
