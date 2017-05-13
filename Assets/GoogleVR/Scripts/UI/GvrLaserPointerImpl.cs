@@ -52,14 +52,14 @@ public class GvrLaserPointerImpl : GvrBasePointer {
     set {
       reticle = value;
       reticleMeshSizeMeters = 0.0f;
-      reticleMeshSizeRatio = 0.0f;
+      //reticleMeshSizeRatio = 0.0f;
 
       if (reticle != null) {
         MeshFilter meshFilter = reticle.GetComponent<MeshFilter>();
         if (meshFilter.mesh != null) {
           reticleMeshSizeMeters = meshFilter.mesh.bounds.size.x;
           if (reticleMeshSizeMeters != 0.0f) {
-            reticleMeshSizeRatio = 1.0f / reticleMeshSizeMeters;
+            //reticleMeshSizeRatio = 1.0f / reticleMeshSizeMeters;
           }
         }
       }
@@ -78,7 +78,7 @@ public class GvrLaserPointerImpl : GvrBasePointer {
 
   // The ratio of the reticleMeshSizeMeters to 1 meter.
   // If reticleMeshSizeMeters is 10, then reticleMeshSizeRatio is 0.1.
-  private float reticleMeshSizeRatio;
+  //private float reticleMeshSizeRatio;
 
   private Vector3 lineEndPoint = Vector3.zero;
   public override Vector3 LineEndPoint { get { return lineEndPoint; } }

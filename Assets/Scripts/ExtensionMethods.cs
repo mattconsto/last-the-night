@@ -1,7 +1,77 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public static class ExtensionMethods {
+	/* Random Extensions */
+
+	public static double NextDouble(this System.Random r, double a) {
+		if(a < 0) throw new ArgumentOutOfRangeException(a + "");
+		return r.NextDouble() * a;
+	}
+
+	public static double NextDouble(this System.Random r, double a, double b) {
+		double min = Math.Min(a, b), max = Math.Max(a, b);
+		return r.NextDouble() * (max - min) + min;
+	}
+
+	public static float NextFloat(this System.Random r) {
+		return (float) r.NextDouble();
+	}
+
+	public static float NextFloat(this System.Random r, float a) {
+		return (float) r.NextDouble(a);
+	}
+
+	public static float NextFloat(this System.Random r, float a, float b) {
+		return (float) r.NextDouble(a, b);
+	}
+
+	public static Color ColorHSV(this System.Random r) {
+		return r.ColorHSV(0, 1, 0, 1, 0, 1);
+	}
+
+	public static Color ColorHSV(this System.Random r, float ha, float hb) {
+		return r.ColorHSV(ha, hb, 0, 1, 0, 1);
+	}
+
+	public static Color ColorHSV(this System.Random r, float ha, float hb, float sa, float sb) {
+		return r.ColorHSV(ha, hb, sa, sb, 0, 1);
+	}
+
+	public static Color ColorHSV(this System.Random r, float ha, float hb, float sa, float sb, float va, float vb) {
+		return Color.HSVToRGB(
+			r.NextFloat(ha, hb),
+			r.NextFloat(sa, sb),
+			r.NextFloat(va, vb)
+		);
+	}
+
+	public static Color ColorRGB(this System.Random r) {
+		return r.ColorRGB(0, 1, 0, 1, 0, 1);
+	}
+
+	public static Color ColorRGB(this System.Random r, float ra, float rb) {
+		return r.ColorRGB(ra, rb, 0, 1, 0, 1);
+	}
+
+	public static Color ColorRGB(this System.Random r, float ra, float rb, float ga, float gb) {
+		return r.ColorRGB(ra, rb, ga, gb, 0, 1);
+	}
+
+	public static Color ColorRGB(this System.Random r, float ra, float rb, float ga, float gb, float ba, float bb) {
+		return new Color(
+			r.NextFloat(ra, rb),
+			r.NextFloat(ga, gb),
+			r.NextFloat(ba, bb),
+			1
+		);
+	}
+
+	public static Quaternion Rotation(this System.Random r) {
+		return new Quaternion(r.NextFloat(), r.NextFloat(), r.NextFloat(), r.NextFloat());
+	}
+
 	/* Alpha Setters */
 
 	public static void SetAlpha(this Material material, float value) {

@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour {
 	public PlayerController player;
 
 	public enum State {MENU, PLAY, PAUSE, END};
-
 	public State state = State.MENU;
 
 	public void Start() {

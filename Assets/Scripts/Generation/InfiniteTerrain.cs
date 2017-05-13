@@ -9,6 +9,10 @@ public class InfiniteTerrain : MonoBehaviour {
 
 	public ChunkGenerator generator;
 	public LODInfo[] lods;
+	public GameObject[] treePrefabs;
+	public GameObject[] flowerPrefabs;
+	public GameObject[] monsterPrefabs;
+	public GameObject[] structurePrefabs;
 
 	private Dictionary<Vector2, TerrainChunk> chunks = new Dictionary<Vector2, TerrainChunk>();
 	private List<TerrainChunk> lastChunks = new List<TerrainChunk>();
