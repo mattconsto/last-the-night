@@ -14,6 +14,7 @@ Third Party Notices
 ## Models
 
 * [Angel Statue by Busina (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/27594)
+* [Audio Cassette by CadNav (Custom)](http://www.cadnav.com/3d-models/model-20485.html)
 * [Cyclop Soldier by BioWinter (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/27320)
 * [Fantasy Monster - Skeleton (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/35635)
 * [Goblin Ranger by Sunsuke Yamamoto (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/14607)
@@ -85,15 +86,9 @@ Third Party Notices
 
 ## Licenses
 
-* Boba Fonts:
-
-	Feel free to distribute the zip but remember to keep it intact and complete.
-	This font is freeware. To tell the truth it's..."e-mailware": if you like it send me an e-mail.
-	Boba Fonts, Davide Canavero, V.Vigliani 15/4, 10135 TORINO, ITALY (bobafonts@tiscalinet.it)
-
 * CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0
 * CC BY 3.0: https://creativecommons.org/licenses/by/3.0
 * CC BY NC 3.0: https://creativecommons.org/licenses/by-nc/3.0
+* Custom: See license file distributed with asset.
 * MIT: https://opensource.org/licenses/MIT
-* NASA Public Domain: https://www.nasa.gov/multimedia/guidelines
 * Unity Asset Store: https://unity3d.com/legal/as_terms
