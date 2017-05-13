@@ -27,9 +27,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
     public void FixedUpdate() {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
         // Running
         float multiplier = Input.GetButton("Fire3") ? 2 : 1;
         if(Input.GetButton("Fire3")) {
