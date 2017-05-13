@@ -1757,8 +1757,8 @@ MonoBehaviour:
   - {fileID: 1298695310410332, guid: 25ac86d5ea8076341814248bec146386, type: 2}
   - {fileID: 1576694844712100, guid: fba42a125517c4649b9d1c5dc49a9c1c, type: 2}
   - {fileID: 1223047447526642, guid: 2dc0a7272589b944f881a17204f57db3, type: 2}
-  - {fileID: 1223047447526642, guid: 2dc0a7272589b944f881a17204f57db3, type: 2}
   - {fileID: 1936371291616148, guid: 5ca95603003dee643893737b79248145, type: 2}
+  - {fileID: 1380445044112216, guid: 404fe783cc253614d8ef6287e90dea24, type: 2}
   - {fileID: 1087328646115250, guid: 72734fbf0e0c9da47b457fe703e91243, type: 2}
   - {fileID: 1301083496624702, guid: 6fac5479bd652cd4bbeb0ac52f9eb6a7, type: 2}
   flowerPrefabs:
@@ -2841,6 +2841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 3
+  random: 1
 --- !u!1 &2053036843
 GameObject:
   m_ObjectHideFlags: 0

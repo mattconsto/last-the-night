@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33988643422301294}
   - component: {fileID: 23377388842370152}
   - component: {fileID: 64478756050057426}
-  - component: {fileID: 114973417935250922}
   - component: {fileID: 199184406853734250}
   - component: {fileID: 198043155727511456}
   m_Layer: 0
@@ -98,22 +97,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 310b0db4fbb70e44e8955fb4ea8978f8, type: 3}
---- !u!114 &114973417935250922
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1716591711278336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e316ca4089e75b42b3d0bc38f687c4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 10
-  partial: 5
-  state: 0
-  respawn: 1
-  spawn: 0
 --- !u!198 &198043155727511456
 ParticleSystem:
   m_ObjectHideFlags: 1

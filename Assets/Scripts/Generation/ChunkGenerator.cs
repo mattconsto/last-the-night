@@ -18,7 +18,7 @@ public class ChunkGenerator : MonoBehaviour {
 	public float lacunarity = 1f;
 
 	public AnimationCurve curve;
-
+	
 	public bool update = true;
 
 	public TerrainType[] regions;
