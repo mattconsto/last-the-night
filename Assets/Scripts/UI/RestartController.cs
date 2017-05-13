@@ -5,8 +5,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class RestartController : MonoBehaviour, IPointerClickHandler {
+public class RestartController : MonoBehaviour, IPointerClickHandler, ISubmitHandler {
 	public void OnPointerClick(PointerEventData ed) {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	public void OnSubmit(BaseEventData ed) {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
