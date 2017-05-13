@@ -16,7 +16,6 @@ public class ChunkGenerator : MonoBehaviour {
 	public float persistance = 1f;
 	[Range(0, 20)]
 	public float lacunarity = 1f;
-	public int seed = 0;
 
 	public AnimationCurve curve;
 
@@ -28,7 +27,7 @@ public class ChunkGenerator : MonoBehaviour {
 	public Queue<ThreadData<MeshData>> meshQueue = new Queue<ThreadData<MeshData>>();
 
 	public float[,] GenerateNoise(int width, int height, float scale, Vector2 offset) {
-		System.Random rng = new System.Random(seed);
+		System.Random rng = new System.Random((int) (Constants.seed * offset.x * offset.y));
 		Vector2[] offsets = new Vector2[octaves];
 
 		for(int o = 0; o < octaves; o++) {
