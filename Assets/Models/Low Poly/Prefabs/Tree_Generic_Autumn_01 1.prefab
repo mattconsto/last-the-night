@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33329895916519360}
   - component: {fileID: 23132890065197120}
   - component: {fileID: 64436377804290610}
-  - component: {fileID: 114130919184488008}
   - component: {fileID: 199052832821143610}
   - component: {fileID: 198025548102418450}
   m_Layer: 0
@@ -40,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1576694844712100}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,22 +98,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 4901ba0765ca5f14990a46e48a7e7c86, type: 3}
---- !u!114 &114130919184488008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576694844712100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e316ca4089e75b42b3d0bc38f687c4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 10
-  partial: 5
-  state: 0
-  respawn: 1
-  spawn: 0
 --- !u!198 &198025548102418450
 ParticleSystem:
   m_ObjectHideFlags: 1

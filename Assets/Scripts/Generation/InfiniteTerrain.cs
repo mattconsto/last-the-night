@@ -6,6 +6,7 @@ public class InfiniteTerrain : MonoBehaviour {
 	public static float viewDistance;
 	public Transform viewer;
 	public Material material;
+	public AnimationCurve curve;
 
 	public ChunkGenerator generator;
 	public LODInfo[] lods;
@@ -26,6 +27,7 @@ public class InfiniteTerrain : MonoBehaviour {
 		chunkSize = ChunkGenerator.resolution - 1;
 		chunksVisble = Mathf.CeilToInt(viewDistance / chunkSize);
 		UpdateChunks();
+		curve = GetComponent<ChunkGenerator>().curve;
 	}
 
 	public void Update() {
@@ -53,7 +55,7 @@ public class InfiniteTerrain : MonoBehaviour {
 					if(chunks[currentChunk].visible)
 						lastChunks.Add(chunks[currentChunk]);
 				} else {
-					chunks.Add(currentChunk, new TerrainChunk(currentChunk, chunkSize, lods, gameObject.transform, material, generator));
+					chunks.Add(currentChunk, new TerrainChunk(currentChunk, chunkSize, lods, gameObject.transform, material, generator, treePrefabs, curve));
 				}
 			}
 		}
@@ -74,13 +76,15 @@ public class InfiniteTerrain : MonoBehaviour {
 		private MeshRenderer _mr;
 		private MeshCollider _mc;
 		private ChunkGenerator generator;
+		private GameObject[] treePrefabs;
+		private AnimationCurve curve;
 
 		public bool visible {
 			get {return _visible;}
 			set {_visible = value; gameObject.SetActive(_visible);}
 		}
 
-		public TerrainChunk(Vector2 coord, int size, LODInfo[] lods, Transform parent, Material material, ChunkGenerator generator) {
+		public TerrainChunk(Vector2 coord, int size, LODInfo[] lods, Transform parent, Material material, ChunkGenerator generator, GameObject[] treePrefabs, AnimationCurve curve) {
 			this.position = coord * (size - 2*2*4);
 			this.bounds = new Bounds(position, Vector3.one * (size + 2*2*4));
 			this.lods = lods;
@@ -102,6 +106,8 @@ public class InfiniteTerrain : MonoBehaviour {
 
 			this.generator = generator;
 			this.generator.RequestMapData(OnMapReceived, position / size);
+			this.treePrefabs = treePrefabs;
+			this.curve = curve;
 		}
 
 		public void OnMapReceived(MapData map) {
@@ -116,6 +122,22 @@ public class InfiniteTerrain : MonoBehaviour {
 			texture.Apply();
 
 			_mr.sharedMaterial.mainTexture = texture;
+
+			System.Random rng = new System.Random((int) (Constants.seed * bounds.center.x * bounds.center.z));
+
+			for(int i = 0; i < 20; i++) {
+				int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
+
+				if(map.noise[y, x] > 0.6f && map.noise[y, x] < 0.8f) {
+					GameObject tree = Instantiate(treePrefabs[rng.Next(treePrefabs.Length)]);
+					tree.transform.parent = gameObject.transform;
+					tree.transform.position = new Vector3(
+						bounds.center.x + 0 - bounds.size.x * ((float) (map.noise.GetLength(1)-y) / map.noise.GetLength(1) - 0.5f),
+						curve.Evaluate(map.noise[y, x]) * 40, // TODO remove horrible magic number
+						bounds.center.y + bounds.size.y * ((float) (map.noise.GetLength(0)-x) / map.noise.GetLength(0) - 1.5f) // Not sure why it needs to be minus 1
+					);
+				}
+			}
 		}
 
 		public void OnMeshReceived(MeshData mesh) {
