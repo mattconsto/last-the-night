@@ -21,39 +21,40 @@ public class PlayerController : MonoBehaviour {
 	public GameObject torch;
 
     private float _distance;
+    private float _multiplier = 1;
 
 	public void Start () {
 		_rb = GetComponent<Rigidbody>();
 	}
 
     public void FixedUpdate() {
-        // Running
-        float multiplier = Input.GetButton("Fire3") ? 2 : 1;
-        if(Input.GetButton("Fire3")) {
-            multiplier = 2;
-            runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
-        } else {
-            runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
-        }
-
         // Footsteps
         if(_canJump > 0) {
-            _distance += (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical")) * multiplier;
+            _distance += (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical")) * _multiplier;
             if(_distance > 50) {
                 effectSource.PlayOneShot(stepClip, 0.25f);
                 _distance = 0;
             }
         }
 
-		_rb.AddForce(transform.right * Input.GetAxis("Horizontal") * speed * multiplier, ForceMode.Impulse);
-		_rb.AddForce(transform.forward * Input.GetAxis("Vertical") * speed * multiplier, ForceMode.Impulse);
-		transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity);
-		cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
-        cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
+        _rb.AddForce(transform.right * Input.GetAxis("Horizontal") * speed * _multiplier, ForceMode.Impulse);
+        _rb.AddForce(transform.forward * Input.GetAxis("Vertical") * speed * _multiplier, ForceMode.Impulse);
+        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity);
 
         if(Input.GetButton("Jump") && _canJump > 0) {
             _rb.AddForce(transform.up * jump);
             effectSource.PlayOneShot(jumpClip, 0.5f);
+        }
+    }
+
+    public void Update() {
+        // Running
+        if(Input.GetButton("Fire3")) {
+            _multiplier = 2;
+            runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
+        } else {
+            _multiplier = 1;
+            runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
         }
 
         if(Input.GetButtonDown("Submit")) {
@@ -67,6 +68,11 @@ public class PlayerController : MonoBehaviour {
         }
         #endif
 	}
+
+    public void LateUpdate() {
+        cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
+        cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
+    }
 
     public void OnCollisionEnter(Collision col) {
         if(col.gameObject.tag == "Jumpable") _canJump++;
