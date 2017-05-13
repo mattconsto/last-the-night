@@ -87,6 +87,7 @@ public class InfiniteTerrain : MonoBehaviour {
 			}
 
 			gameObject = new GameObject("Terrain Chunk");
+			gameObject.tag = "Jumpable";
 			_mf = gameObject.AddComponent<MeshFilter>();
 			_mr = gameObject.AddComponent<MeshRenderer>();
 			_mc = gameObject.AddComponent<MeshCollider>();
