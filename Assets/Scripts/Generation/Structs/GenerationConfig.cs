@@ -24,4 +24,6 @@ public class GenerationConfig {
 	public GameObject[] structurePrefabs;
 
 	public ChunkGenerator generator;
+
+	public GameObject monsterContainer;
 }

@@ -115,6 +115,21 @@ public class TerrainChunk : ScriptableObject {
 				structure.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
 			}
 		}
+
+		for(int i = 0; i < 1; i++) {
+			int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
+
+			if(map.noise[y, x] > 0.4f && map.noise[y, x] < 0.85f) {
+				GameObject monster = Instantiate(config.monsterPrefabs[rng.Next(config.monsterPrefabs.Length)]);
+				monster.transform.parent = config.monsterContainer.transform;
+				monster.transform.position = new Vector3(
+					bounds.center.x + 0 - bounds.size.x * ((float) (map.noise.GetLength(1) - y) / map.noise.GetLength(1) - 0.5f),
+					config.curve.Evaluate(map.noise[y, x]) * config.scale.y * 2,
+					bounds.center.y + bounds.size.y * ((float) (map.noise.GetLength(0) - x) / map.noise.GetLength(0) - 1.5f) // Not sure why it needs to be minus 1
+				);
+				monster.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
+			}
+		}
 	}
 
 	public void UpdateChunk() {
