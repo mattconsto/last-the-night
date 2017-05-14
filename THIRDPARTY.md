@@ -15,6 +15,7 @@ Third Party Notices
 
 * [Angel Statue by Busina (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/27594)
 * [Audio Cassette by CadNav (Custom)](http://www.cadnav.com/3d-models/model-20485.html)
+* [Base Human Models by FreeLikeGNU (CC BY SA 3.0)](https://opengameart.org/content/base-human-models-low-poly-for-blender-25x)
 * [Cyclop Soldier by BioWinter (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/27320)
 * [Fantasy Monster - Skeleton (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/35635)
 * [Fruit Pack by astro3d (Unity Asset Store)](https://www.assetstore.unity3d.com/en/#content/80254)
