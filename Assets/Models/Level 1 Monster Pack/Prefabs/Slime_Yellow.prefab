@@ -577,6 +577,8 @@ MonoBehaviour:
   damage: 10
   fireDamage: 0
   fireRate: 1
+  angle: 45
+  angel: 0
 --- !u!135 &135727736322727662
 SphereCollider:
   m_ObjectHideFlags: 1

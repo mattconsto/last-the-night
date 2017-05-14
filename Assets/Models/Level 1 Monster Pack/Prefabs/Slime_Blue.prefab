@@ -558,6 +558,8 @@ MonoBehaviour:
   damage: 10
   fireDamage: 0
   fireRate: 1
+  angle: 45
+  angel: 0
 --- !u!114 &114760039230536966
 MonoBehaviour:
   m_ObjectHideFlags: 1

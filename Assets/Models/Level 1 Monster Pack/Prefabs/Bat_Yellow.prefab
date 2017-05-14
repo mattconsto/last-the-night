@@ -1302,7 +1302,7 @@ Rigidbody:
   m_Mass: 50
   m_Drag: 1
   m_AngularDrag: 50
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -1341,6 +1341,8 @@ MonoBehaviour:
   damage: 10
   fireDamage: 0
   fireRate: 1
+  angle: 45
+  angel: 0
 --- !u!114 &114857635249960780
 MonoBehaviour:
   m_ObjectHideFlags: 1
