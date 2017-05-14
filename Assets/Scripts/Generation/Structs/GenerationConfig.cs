@@ -13,6 +13,7 @@ public class GenerationConfig {
 	[Range(0, 20)]
 	public float lacunarity = 1f;
 	public AnimationCurve curve;
+	public int seed = 0;
 
 	/* Resources */
 	public Material material;
