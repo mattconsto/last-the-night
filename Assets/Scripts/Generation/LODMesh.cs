@@ -7,7 +7,7 @@ public class LODMesh {
 	public bool recieved;
 	public int lod;
 
-	private Action<LODMesh> _callback;
+	private Action _callback;
 	private GenerationConfig config;
 
 	public LODMesh(int lod, GenerationConfig config) {
@@ -18,10 +18,10 @@ public class LODMesh {
 	public void OnMeshReceived(MeshData mesh) {
 		this.mesh = mesh.CreateMesh();
 		recieved = true;
-		if(_callback != null) _callback(this);
+		if(_callback != null) _callback();
 	}
 
-	public void Request(Action<LODMesh> callback, MapData map) {
+	public void Request(Action callback, MapData map) {
 		_callback = callback;
 		requested = true;
 		config.generator.RequestMeshData(OnMeshReceived, config, map, lod);

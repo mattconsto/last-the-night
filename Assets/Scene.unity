@@ -1379,7 +1379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &924002693
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2031,7 +2031,6 @@ GameObject:
   - component: {fileID: 1568253746}
   - component: {fileID: 1568253745}
   - component: {fileID: 1568253747}
-  - component: {fileID: 1568253748}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -2156,6 +2155,8 @@ MonoBehaviour:
     - {fileID: 1551608105014568, guid: 40423e1678ecb2f47bceef5f237f97fc, type: 2}
     - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
     - {fileID: 1913179290288502, guid: 83bdf8ccba7c6204a95c1ad6685f67e1, type: 2}
+    tapePrefab: {fileID: 1088954884437138, guid: a60153ec9ea810e4c8b5e74b61208884,
+      type: 2}
     generator: {fileID: 1568253743}
     monsterContainer: {fileID: 580725278}
 --- !u!4 &1568253742
@@ -2249,17 +2250,6 @@ MonoBehaviour:
   generator: {fileID: 1568253741}
   seed: {fileID: 167769360}
   state: 0
---- !u!114 &1568253748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1568253740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be660964fa6be86499a3ef6a3108af37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1580627844
 GameObject:
   m_ObjectHideFlags: 0

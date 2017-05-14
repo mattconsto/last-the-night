@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 54540842370846152}
   - component: {fileID: 135529842508911716}
   - component: {fileID: 114838602157949416}
+  - component: {fileID: 114959790636129068}
   m_Layer: 0
   m_Name: Rabbit_Yellow
   m_TagString: Untagged
@@ -756,6 +757,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   burnTime: 0
+--- !u!114 &114959790636129068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011046516534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e259b2125ade9904982a3b6f656b2b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimum: 10
+  threshold: 100
+  speed: 2000
 --- !u!135 &135529842508911716
 SphereCollider:
   m_ObjectHideFlags: 1

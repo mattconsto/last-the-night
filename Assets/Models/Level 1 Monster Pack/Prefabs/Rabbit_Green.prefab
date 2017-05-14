@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 54694307750057182}
   - component: {fileID: 135637512965279148}
   - component: {fileID: 114375969332180604}
+  - component: {fileID: 114288565905222292}
   m_Layer: 0
   m_Name: Rabbit_Green
   m_TagString: Untagged
@@ -743,6 +744,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114288565905222292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013796193586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e259b2125ade9904982a3b6f656b2b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimum: 10
+  threshold: 100
+  speed: 2000
 --- !u!114 &114375969332180604
 MonoBehaviour:
   m_ObjectHideFlags: 1
