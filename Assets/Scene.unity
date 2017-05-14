@@ -1740,6 +1740,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewer: {fileID: 2053036849}
   material: {fileID: 2100000, guid: 18c659b4ca172f94aa11ef18892f3f7d, type: 2}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   generator: {fileID: 1568253743}
   lods:
   - lod: 4
@@ -1794,6 +1800,107 @@ MonoBehaviour:
   - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
   chunkSize: 0
   chunksVisble: 0
+  config:
+    scale: {x: 400, y: 40}
+    octaves: 4
+    persistance: 0.417
+    lacunarity: 2.7
+    regions:
+    - name: Sand
+      threshold: 0.5
+      color: {r: 0.8470589, g: 0.8431373, b: 0.54509807, a: 0}
+    - name: Grass
+      threshold: 0.65
+      color: {r: 0.3529412, g: 0.5921569, b: 0.09411766, a: 0}
+    - name: Trees
+      threshold: 0.75
+      color: {r: 0.25490198, g: 0.41960788, b: 0.078431375, a: 0}
+    - name: Rocks
+      threshold: 0.85
+      color: {r: 0.37647063, g: 0.22352943, b: 0.08627451, a: 0}
+    - name: Mountains
+      threshold: 0.95
+      color: {r: 0.24313727, g: 0.18823531, b: 0.13725491, a: 0}
+    - name: Snow
+      threshold: 100000000
+      color: {r: 0.9843138, g: 0.9921569, b: 0.9921569, a: 0}
+    material: {fileID: 2100000, guid: 18c659b4ca172f94aa11ef18892f3f7d, type: 2}
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.53866124
+        value: 0.19124085
+        inSlope: 0.27280372
+        outSlope: 0.27280372
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 2.1859536
+        value: 10.807733
+        inSlope: 6.820043
+        outSlope: 6.820043
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    lods:
+    - lod: 4
+      threshold: 200
+    - lod: 8
+      threshold: 300
+    - lod: 32
+      threshold: 400
+    treePrefabs:
+    - {fileID: 1425375320836030, guid: 2d95af39285c4ee4f81b72464f887773, type: 2}
+    - {fileID: 1316845724705336, guid: 06cf0014431faae44b4b2d159609ed9c, type: 2}
+    - {fileID: 1074093207174980, guid: 9cc259962dad9534397de2a3d7e3ced8, type: 2}
+    - {fileID: 1922330862089550, guid: c074add7a653d6b4fa561fe3f9767220, type: 2}
+    - {fileID: 1465312091743730, guid: c1c9cae17d0927f4e9a56f9d879e2f25, type: 2}
+    - {fileID: 1298695310410332, guid: 25ac86d5ea8076341814248bec146386, type: 2}
+    - {fileID: 1576694844712100, guid: fba42a125517c4649b9d1c5dc49a9c1c, type: 2}
+    - {fileID: 1223047447526642, guid: 2dc0a7272589b944f881a17204f57db3, type: 2}
+    - {fileID: 1936371291616148, guid: 5ca95603003dee643893737b79248145, type: 2}
+    - {fileID: 1380445044112216, guid: 404fe783cc253614d8ef6287e90dea24, type: 2}
+    - {fileID: 1087328646115250, guid: 72734fbf0e0c9da47b457fe703e91243, type: 2}
+    - {fileID: 1301083496624702, guid: 6fac5479bd652cd4bbeb0ac52f9eb6a7, type: 2}
+    flowerPrefabs:
+    - {fileID: 1398633331175556, guid: 261828370d777024fb8a35c0e96229f7, type: 2}
+    - {fileID: 1564749039071212, guid: 3c218da87d32a1540b8ffbb16d0e661d, type: 2}
+    - {fileID: 1372216191587420, guid: a0c25284c2cd0ad4ca8331c579c6549b, type: 2}
+    - {fileID: 1228597936173852, guid: fdd0f08015420434c8ff5dc30dce8561, type: 2}
+    - {fileID: 1502228118730820, guid: 45242bdc30e8f5346bf34d1a6cd31fd5, type: 2}
+    - {fileID: 1568986962866172, guid: 00600c90c5394564baa28ea75385c5fe, type: 2}
+    - {fileID: 1352417799661342, guid: 2b4689f5505bbae40952601ac53a7579, type: 2}
+    monsterPrefabs:
+    - {fileID: 1000013827195344, guid: d82532fc4fd80bf4097d29efd331a0ff, type: 2}
+    - {fileID: 1000011593744314, guid: 67f0474ce7d8d344fa04ba561d36d761, type: 2}
+    - {fileID: 1000012081666484, guid: a300b93764f24c94b9ddb3445d906548, type: 2}
+    - {fileID: 1000013849561652, guid: 5fd1210210040d34e8810388185a6063, type: 2}
+    - {fileID: 1000011148102054, guid: 47228d4b7bdfaa94fbf70257eaa459a1, type: 2}
+    - {fileID: 1000010538092382, guid: e067a1df356d3e84bb3f15113b018f67, type: 2}
+    - {fileID: 1000011296433714, guid: 30d420b7cf5d3ad40b5c02db6d73287a, type: 2}
+    - {fileID: 1000011659465104, guid: e3e8e33af43da834294d5f9a02da77e7, type: 2}
+    - {fileID: 1000014069041812, guid: f3e92f0e6c7c8724b98eded63b438981, type: 2}
+    - {fileID: 1000013796193586, guid: 0f21afde7a41dfb4e930ca290ca46dee, type: 2}
+    - {fileID: 1000013767804016, guid: c334a7c41936e764391ae93ab0e1981d, type: 2}
+    - {fileID: 1000011046516534, guid: 2a4adfdefdadd7048a18bb7e7cc5b23b, type: 2}
+    - {fileID: 1000013175867634, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 2}
+    - {fileID: 1000012979649092, guid: 9c8e6b52a146b2d4994f42592a19bba0, type: 2}
+    - {fileID: 1000013297890758, guid: 1ce05a9bb8cf8c34890ad308705a8ca4, type: 2}
+    - {fileID: 1000014251014320, guid: 529296adea5f8bb4581e098f98e62549, type: 2}
+    structurePrefabs:
+    - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
+    - {fileID: 1508929353297074, guid: 9b21216ee307a0a41979ffcddc67b7e3, type: 2}
+    - {fileID: 1551608105014568, guid: 40423e1678ecb2f47bceef5f237f97fc, type: 2}
+    - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
+    - {fileID: 1913179290288502, guid: 83bdf8ccba7c6204a95c1ad6685f67e1, type: 2}
+    generator: {fileID: 1568253743}
 --- !u!4 &1568253742
 Transform:
   m_ObjectHideFlags: 0
