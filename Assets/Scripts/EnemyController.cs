@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour {
 	public float damage = 0;
 	public float fireDamage = 0;
 	public float fireRate = 1;
+	public float angle = 45;
+	public bool angel = false;
 
 	private float _cooldown = 0;
 
@@ -27,8 +29,10 @@ public class EnemyController : MonoBehaviour {
 
 		if(distance < threshold) {
 			if(distance > minimum) {
-				transform.LookAt(_player.transform);
-				_rb.AddForce(transform.forward * speed);
+				if(!angel || Vector3.Angle(_player.transform.forward, transform.position - _player.transform.position) > angle) {
+					transform.LookAt(_player.transform);
+					_rb.AddForce(transform.forward * speed);
+				}
 			} else {
 				if(_cooldown < 0) {
 					_player.GetComponent<Destructable>().OnHurt(damage, fireDamage);

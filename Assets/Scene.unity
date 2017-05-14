@@ -2177,6 +2177,10 @@ MonoBehaviour:
     - {fileID: 1000012979649092, guid: 9c8e6b52a146b2d4994f42592a19bba0, type: 2}
     - {fileID: 1000013297890758, guid: 1ce05a9bb8cf8c34890ad308705a8ca4, type: 2}
     - {fileID: 1000014251014320, guid: 529296adea5f8bb4581e098f98e62549, type: 2}
+    - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
+    - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
+    - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
+    - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
     structurePrefabs:
     - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
     - {fileID: 1508929353297074, guid: 9b21216ee307a0a41979ffcddc67b7e3, type: 2}
