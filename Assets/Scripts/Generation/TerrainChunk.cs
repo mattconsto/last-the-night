@@ -12,6 +12,7 @@ public class TerrainChunk : ScriptableObject {
 	public GameObject treeContainer;
 	public GameObject grassContainer;
 	public GameObject structureContainer;
+	public GameObject tapeContainer;
 	public bool recieved = false;
 
 	private bool _visible;
@@ -26,25 +27,27 @@ public class TerrainChunk : ScriptableObject {
 		set {_visible = value; gameObject.SetActive(_visible);}
 	}
 
+	public static GameObject CreateGameObjectWithParent(string name, GameObject parent) {
+		GameObject go = new GameObject("Tree Container");
+		go.transform.parent = parent.transform;
+		return go;
+	}
+
 	public void init(Vector2 coord, int size, GameObject parent, GenerationConfig config) {
 		this.config = config;
 
 		position = coord * (size - 2*2*4);
 		bounds = new Bounds(position, Vector3.one * (size + 2*2*4));
-
 		lodMeshs = new LODMesh[config.lods.Length];
 		for(int i = 0; i < config.lods.Length; i++) lodMeshs[i] = new LODMesh(config.lods[i].lod, config);
 
-		gameObject = new GameObject("Terrain Chunk");
-		gameObject.tag = "Jumpable";
+		gameObject         = CreateGameObjectWithParent("Terrain Chunk", parent);
+		treeContainer      = CreateGameObjectWithParent("TreeContainer", gameObject);
+		grassContainer     = CreateGameObjectWithParent("Grass Container", gameObject);
+		structureContainer = CreateGameObjectWithParent("Structure Container", gameObject);
+		tapeContainer      = CreateGameObjectWithParent("Tape Container", gameObject);
 		gameObject.transform.position = new Vector3(position.x, 0, position.y);
-		gameObject.transform.parent = parent.transform;
-		treeContainer = new GameObject("Tree Container");
-		treeContainer.transform.parent = gameObject.transform;
-		grassContainer = new GameObject("Grass Container");
-		grassContainer.transform.parent = gameObject.transform;
-		structureContainer = new GameObject("Structure Container");
-		structureContainer.transform.parent = gameObject.transform;
+		gameObject.tag = "Jumpable";
 
 		_mf = gameObject.AddComponent<MeshFilter>();
 		_mr = gameObject.AddComponent<MeshRenderer>();
@@ -71,7 +74,7 @@ public class TerrainChunk : ScriptableObject {
 
 		UpdateChunk();
 
-		System.Random rng = new System.Random((int) (Constants.seed * bounds.center.x * bounds.center.z + config.seed));
+		System.Random rng = new System.Random((int) (bounds.center.x * bounds.center.z * config.seed));
 
 		for(int i = 0; i < 20; i++) {
 			int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
@@ -132,10 +135,19 @@ public class TerrainChunk : ScriptableObject {
 				monster.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
 			}
 		}
-	}
 
-	public void OnMeshReceived(LODMesh mesh) {
-		UpdateChunk();
+		if(rng.NextFloat() < 0.1f) {
+			int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
+
+			GameObject tape = Instantiate(config.tapePrefab);
+			tape.transform.parent = tapeContainer.transform;
+			tape.transform.position = new Vector3(
+				bounds.center.x + 0 - bounds.size.x * ((float) (map.noise.GetLength(1) - y) / map.noise.GetLength(1) - 0.5f),
+				config.curve.Evaluate(map.noise[y, x]) * config.scale.y * 2,
+				bounds.center.y + bounds.size.y * ((float) (map.noise.GetLength(0) - x) / map.noise.GetLength(0) - 1.5f) // Not sure why it needs to be minus 1
+			);
+			tape.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
+		}
 	}
 
 	public void UpdateChunk() {
@@ -162,7 +174,7 @@ public class TerrainChunk : ScriptableObject {
 					_mf.sharedMesh = mesh.mesh;
 					_mc.sharedMesh = mesh.mesh;
 				} else if(!mesh.requested) {
-					mesh.Request(OnMeshReceived, map);
+					mesh.Request(UpdateChunk, map);
 				}
 			}
 		}

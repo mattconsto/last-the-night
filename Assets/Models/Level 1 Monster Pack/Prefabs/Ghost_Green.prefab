@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 54458365774243122}
   - component: {fileID: 135313561056162322}
   - component: {fileID: 114721916734273988}
+  - component: {fileID: 114219770336426886}
   m_Layer: 0
   m_Name: Ghost_Green
   m_TagString: Untagged
@@ -395,6 +396,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114219770336426886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010538092382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e259b2125ade9904982a3b6f656b2b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimum: 10
+  threshold: 100
+  speed: 2000
 --- !u!114 &114721916734273988
 MonoBehaviour:
   m_ObjectHideFlags: 1

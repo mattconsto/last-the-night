@@ -23,6 +23,7 @@ public class GenerationConfig {
 	public GameObject[] flowerPrefabs;
 	public GameObject[] monsterPrefabs;
 	public GameObject[] structurePrefabs;
+	public GameObject tapePrefab;
 
 	public ChunkGenerator generator;
 
