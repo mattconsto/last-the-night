@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    public HUDController hud;
+
     public AudioSource runningSource;
     public AudioSource effectSource;
 
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     public List<GameObject> weapons = new List<GameObject>();
     public int selectedWeapon = 0;
 
-	public void Start () {
+	public void Start() {
 		_rb = GetComponent<Rigidbody>();
         Transform hand = transform.Find("Hand");
 		for (int i = 0; i < weapons.Count; i++) {
@@ -61,8 +63,15 @@ public class PlayerController : MonoBehaviour {
     public void Update() {
         // Running
         if(Input.GetButton("Fire3")) {
-            _multiplier = 2;
-            runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
+            GetComponent<Destructable>()._staminaTimer = 2f;
+            if(GetComponent<Destructable>().stamina > 0) {
+                _multiplier = 2;
+                runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
+                GetComponent<Destructable>().stamina -= Time.deltaTime;
+            } else {
+                _multiplier = 1;
+                runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
+            }
         } else {
             _multiplier = 1;
             runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
@@ -78,6 +87,9 @@ public class PlayerController : MonoBehaviour {
 	       Application.Quit();
         }
         #endif
+
+        hud.SetHealth(GetComponent<Destructable>().health/GetComponent<Destructable>().maxHealth);
+        hud.SetStamina(GetComponent<Destructable>().stamina/GetComponent<Destructable>().maxStamina);
 	}
 
     /* Event Listeners*/

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 43428178}
-  m_IndirectSpecularColor: {r: 0.0040619043, g: 0.00022204586, b: 0.000000055939633,
+  m_IndirectSpecularColor: {r: 0.0040619024, g: 0.0002220455, b: 0.000000055939633,
     a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -3274,6 +3274,7 @@ GameObject:
   - component: {fileID: 2053036846}
   - component: {fileID: 2053036845}
   - component: {fileID: 2053036844}
+  - component: {fileID: 2053036850}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3292,6 +3293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b186de479a0a7e24eaed50e968980d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hud: {fileID: 1568253744}
   runningSource: {fileID: 1583416890}
   effectSource: {fileID: 1792144013}
   jumpClip: {fileID: 8300000, guid: aeb5ea05042425445b381db68fac2cd7, type: 3}
@@ -3388,3 +3390,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2053036850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2053036843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb9f4abe63365c499fe3ce7b97166fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  stamina: 10
+  maxStamina: 10
+  regenRate: 1
+  decayRate: 1
+  _healthTimer: 0
+  _staminaTimer: 0
