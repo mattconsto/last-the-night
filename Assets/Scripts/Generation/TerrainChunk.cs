@@ -69,7 +69,7 @@ public class TerrainChunk : ScriptableObject {
 
 		_mr.sharedMaterial.mainTexture = texture;
 
-		System.Random rng = new System.Random((int) (Constants.seed * bounds.center.x * bounds.center.z));
+		System.Random rng = new System.Random((int) (Constants.seed * bounds.center.x * bounds.center.z + config.seed));
 
 		for(int i = 0; i < 20; i++) {
 			int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));

@@ -8,6 +8,7 @@ public class InfiniteTerrain : MonoBehaviour {
 	public static Vector2 viewerPosition;
 	public int chunkSize;
 	public int chunksVisble;
+	public bool update = false;
 
 	public GenerationConfig config;
 
@@ -18,12 +19,11 @@ public class InfiniteTerrain : MonoBehaviour {
 		viewDistance = config.lods[config.lods.Length-1].threshold;
 		chunkSize = config.resolution - 1;
 		chunksVisble = Mathf.CeilToInt(viewDistance / chunkSize);
-		UpdateChunks();
 	}
 
 	public void Update() {
 		viewerPosition = new Vector2(viewer.position.x, viewer.position.z);
-		UpdateChunks();
+		if(update) UpdateChunks();
 	}
 
 	public void UpdateChunks() {
