@@ -23,8 +23,19 @@ public class PlayerController : MonoBehaviour {
     private float _distance;
     private float _multiplier = 1;
 
+    public List<GameObject> weapons = new List<GameObject>();
+    public int selectedWeapon = 0;
+
 	public void Start () {
 		_rb = GetComponent<Rigidbody>();
+        Transform hand = transform.Find("Hand");
+		for (int i = 0; i < weapons.Count; i++) {
+            Debug.Log(weapons[0]);
+			weapons[i] = Instantiate(weapons[i], hand.transform.position, hand.transform.rotation);
+			weapons[i].SetActive(false);
+			weapons[i].transform.parent = hand;
+		}
+		weapons[selectedWeapon].SetActive(true);
 	}
 
     public void FixedUpdate() {
@@ -68,6 +79,42 @@ public class PlayerController : MonoBehaviour {
         }
         #endif
 	}
+
+    /* Event Listeners*/
+
+	public void OnFire(float value) {
+		// if(_respawnTimer > 0) return;
+
+		if(value > 0) {
+			WeaponController controller = weapons[selectedWeapon].GetComponent<WeaponController>();
+			if(controller != null) controller.Fire();
+		}
+	}
+
+	public void OnSwitch(int value) {
+		weapons[selectedWeapon].SetActive(false);
+		selectedWeapon = (selectedWeapon + value + weapons.Count) % weapons.Count;
+		weapons[selectedWeapon].SetActive(true);
+		// Set message here
+		// Play audio here
+	}
+
+	public void AddWeapon(GameObject prefab) {
+		Transform hand = transform.Find("Hand");
+
+		for(int i = 0; i < weapons.Count; i++) weapons[i].SetActive(false);
+
+		weapons.Add(Instantiate(prefab, hand.transform.position, hand.transform.rotation));
+		weapons[weapons.Count -1].transform.parent = hand;
+		selectedWeapon = weapons.Count - 1;
+
+		// Set Weapon Message healthRegen
+		// Play Switch weapon audio
+	}
+
+	// public void OnReload() {
+	// 	weapons[selectedWeapon].GetComponent<WeaponController>().Reload();
+	// }
 
     public void LateUpdate() {
         cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
