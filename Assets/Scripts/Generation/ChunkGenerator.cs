@@ -11,6 +11,7 @@ public class ChunkGenerator : MonoBehaviour {
 	public void RequestMapData(Action<MapData> callback, GenerationConfig config, Vector2 offset) {
 		ThreadStart thread = delegate {
 			float[,] noise  = NoiseGenerator.GenerateNoise(config, offset);
+			//float[,] biomes = NoiseGenerator.GenerateNoise(config, offset);
 			Color[]  colors = TextureGenerator.DrawColor(noise, config.regions);
 			MapData  data   = new MapData(noise, colors);
 			lock(mapQueue) {
