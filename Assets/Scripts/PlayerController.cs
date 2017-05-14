@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public HUDController hud;
+    public GameController controller;
 
     public AudioSource runningSource;
     public AudioSource effectSource;
@@ -82,12 +83,6 @@ public class PlayerController : MonoBehaviour {
             effectSource.PlayOneShot(torchClip, 0.5f);
         }
 
-        #if !UNITY_EDITOR
-        if (Input.GetButtonDown("Cancel")) {
-	       Application.Quit();
-        }
-        #endif
-
         hud.SetHealth(GetComponent<Destructable>().health/GetComponent<Destructable>().maxHealth);
         hud.SetStamina(GetComponent<Destructable>().stamina/GetComponent<Destructable>().maxStamina);
 	}
@@ -129,8 +124,10 @@ public class PlayerController : MonoBehaviour {
 	// }
 
     public void LateUpdate() {
-        cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
-        cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
+        if(controller.state == GameController.State.PLAY) {
+            cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
+            cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
+        }
     }
 
     public void OnCollisionEnter(Collision col) {
