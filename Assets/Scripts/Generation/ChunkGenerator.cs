@@ -9,23 +9,25 @@ public class ChunkGenerator : MonoBehaviour {
 	private Queue<ThreadData<MeshData>> meshQueue = new Queue<ThreadData<MeshData>>();
 
 	public void RequestMapData(Action<MapData> callback, GenerationConfig config, Vector2 offset) {
-		new Thread(delegate() {
+		ThreadStart thread = delegate {
 			float[,] noise  = NoiseGenerator.GenerateNoise(config, offset);
 			Color[]  colors = TextureGenerator.DrawColor(noise, config.regions);
 			MapData  data   = new MapData(noise, colors);
 			lock(mapQueue) {
 				mapQueue.Enqueue(new ThreadData<MapData>(callback, data));
 			}
-		}).Start();
+		};
+		new Thread(thread).Start();
 	}
 
 	public void RequestMeshData(Action<MeshData> callback, GenerationConfig config, MapData map, int lod) {
-		new Thread(delegate() {
+		ThreadStart thread = delegate {
 			MeshData data = MeshGenerator.GenerateMesh(map.noise, lod, config.curve, config.scale);
 			lock (meshQueue) {
 				meshQueue.Enqueue(new ThreadData<MeshData>(callback, data));
 			}
-		}).Start();
+		};
+		new Thread(thread).Start();
 	}
 
 	public void Update() {

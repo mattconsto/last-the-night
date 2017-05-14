@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
 			generator.config.seed = seed.text.Length > 0 ? Convert.ToInt32(seed.text) : 0;
-			generator.update = true;
+			generator.enabled = true;
 			player.GetComponent<Rigidbody>().isKinematic = false;
 		}
 	}
@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour {
 			player.enabled = false;
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-			generator.update = false;
+			generator.enabled = false;
 		}
 	}
 }

@@ -69,6 +69,8 @@ public class TerrainChunk : ScriptableObject {
 
 		_mr.sharedMaterial.mainTexture = texture;
 
+		UpdateChunk();
+
 		System.Random rng = new System.Random((int) (Constants.seed * bounds.center.x * bounds.center.z + config.seed));
 
 		for(int i = 0; i < 20; i++) {
@@ -132,6 +134,10 @@ public class TerrainChunk : ScriptableObject {
 		}
 	}
 
+	public void OnMeshReceived(LODMesh mesh) {
+		UpdateChunk();
+	}
+
 	public void UpdateChunk() {
 		if(!recieved) return;
 
@@ -156,7 +162,7 @@ public class TerrainChunk : ScriptableObject {
 					_mf.sharedMesh = mesh.mesh;
 					_mc.sharedMesh = mesh.mesh;
 				} else if(!mesh.requested) {
-					mesh.Request(map);
+					mesh.Request(OnMeshReceived, map);
 				}
 			}
 		}
