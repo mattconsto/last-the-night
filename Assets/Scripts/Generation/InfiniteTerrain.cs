@@ -32,9 +32,7 @@ public class InfiniteTerrain : MonoBehaviour {
 			Mathf.RoundToInt(viewerPosition.y / (chunkSize - 2*2*4))
 		);
 
-		for(int i = 0; i < lastChunks.Count; i++) {
-			lastChunks[i].visible = false;
-		}
+		for(int i = 0; i < lastChunks.Count; i++) lastChunks[i].visible = false;
 		lastChunks.Clear();
 
 		for(int y = -chunksVisble; y <= chunksVisble; y++) {
@@ -47,7 +45,7 @@ public class InfiniteTerrain : MonoBehaviour {
 						lastChunks.Add(chunks[currentChunk]);
 				} else {
 					TerrainChunk chunk = ScriptableObject.CreateInstance<TerrainChunk>();
-					chunk.init(currentChunk, chunkSize, gameObject.transform, config);
+					chunk.init(currentChunk, chunkSize, gameObject, config);
 					chunks.Add(currentChunk, chunk);
 				}
 			}
