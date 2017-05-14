@@ -5,29 +5,20 @@ using UnityEngine;
 public class InfiniteTerrain : MonoBehaviour {
 	public static float viewDistance;
 	public Transform viewer;
-	public Material material;
-	public AnimationCurve curve;
-
-	public ChunkGenerator generator;
-	public LODInfo[] lods;
-	public GameObject[] treePrefabs;
-	public GameObject[] flowerPrefabs;
-	public GameObject[] monsterPrefabs;
-	public GameObject[] structurePrefabs;
-
-	private Dictionary<Vector2, TerrainChunk> chunks = new Dictionary<Vector2, TerrainChunk>();
-	private List<TerrainChunk> lastChunks = new List<TerrainChunk>();
-
 	public static Vector2 viewerPosition;
 	public int chunkSize;
 	public int chunksVisble;
 
+	public GenerationConfig config;
+
+	private Dictionary<Vector2, TerrainChunk> chunks = new Dictionary<Vector2, TerrainChunk>();
+	private List<TerrainChunk> lastChunks = new List<TerrainChunk>();
+
 	public void Start() {
-		viewDistance = lods[lods.Length-1].threshold;
-		chunkSize = ChunkGenerator.resolution - 1;
+		viewDistance = config.lods[config.lods.Length-1].threshold;
+		chunkSize = config.resolution - 1;
 		chunksVisble = Mathf.CeilToInt(viewDistance / chunkSize);
 		UpdateChunks();
-		curve = GetComponent<ChunkGenerator>().curve;
 	}
 
 	public void Update() {
@@ -55,119 +46,9 @@ public class InfiniteTerrain : MonoBehaviour {
 					if(chunks[currentChunk].visible)
 						lastChunks.Add(chunks[currentChunk]);
 				} else {
-					chunks.Add(currentChunk, new TerrainChunk(currentChunk, chunkSize, lods, gameObject.transform, material, generator, treePrefabs, curve));
-				}
-			}
-		}
-	}
-
-	public class TerrainChunk {
-		public Vector2 position;
-		public GameObject gameObject;
-		public Bounds bounds;
-		public LODInfo[] lods;
-		public int previousLOD = -1;
-		public LODMesh[] lodMeshs;
-		public MapData map;
-		public bool recieved = false;
-
-		private bool _visible;
-		private MeshFilter   _mf;
-		private MeshRenderer _mr;
-		private MeshCollider _mc;
-		private ChunkGenerator generator;
-		private GameObject[] treePrefabs;
-		private AnimationCurve curve;
-
-		public bool visible {
-			get {return _visible;}
-			set {_visible = value; gameObject.SetActive(_visible);}
-		}
-
-		public TerrainChunk(Vector2 coord, int size, LODInfo[] lods, Transform parent, Material material, ChunkGenerator generator, GameObject[] treePrefabs, AnimationCurve curve) {
-			this.position = coord * (size - 2*2*4);
-			this.bounds = new Bounds(position, Vector3.one * (size + 2*2*4));
-			this.lods = lods;
-			this.lodMeshs = new LODMesh[lods.Length];
-
-			for(int i = 0; i < lods.Length; i++) {
-				lodMeshs[i] = new LODMesh(lods[i].lod, generator);
-			}
-
-			gameObject = new GameObject("Terrain Chunk");
-			gameObject.tag = "Jumpable";
-			_mf = gameObject.AddComponent<MeshFilter>();
-			_mr = gameObject.AddComponent<MeshRenderer>();
-			_mc = gameObject.AddComponent<MeshCollider>();
-			_mr.material = new Material(material);
-			gameObject.transform.position = new Vector3(position.x, 0, position.y);
-			gameObject.transform.parent = parent;
-			visible = false;
-
-			this.generator = generator;
-			this.generator.RequestMapData(OnMapReceived, position / size);
-			this.treePrefabs = treePrefabs;
-			this.curve = curve;
-		}
-
-		public void OnMapReceived(MapData map) {
-			this.map = map;
-			recieved = true;
-			
-			// Create texture
-			Texture2D texture = new Texture2D (map.noise.GetLength(0), map.noise.GetLength(1));
-			//texture.filterMode = FilterMode.Point;
-			texture.wrapMode = TextureWrapMode.Clamp;
-			texture.SetPixels(map.color);
-			texture.Apply();
-
-			_mr.sharedMaterial.mainTexture = texture;
-
-			System.Random rng = new System.Random((int) (Constants.seed * bounds.center.x * bounds.center.z));
-
-			for(int i = 0; i < 20; i++) {
-				int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
-
-				if(map.noise[y, x] > 0.6f && map.noise[y, x] < 0.8f) {
-					GameObject tree = Instantiate(treePrefabs[rng.Next(treePrefabs.Length)]);
-					tree.transform.parent = gameObject.transform;
-					tree.transform.position = new Vector3(
-						bounds.center.x + 0 - bounds.size.x * ((float) (map.noise.GetLength(1)-y) / map.noise.GetLength(1) - 0.5f),
-						curve.Evaluate(map.noise[y, x]) * 40, // TODO remove horrible magic number
-						bounds.center.y + bounds.size.y * ((float) (map.noise.GetLength(0)-x) / map.noise.GetLength(0) - 1.5f) // Not sure why it needs to be minus 1
-					);
-				}
-			}
-		}
-
-		public void OnMeshReceived(MeshData mesh) {
-			_mf.sharedMesh = mesh.CreateMesh();
-			_mc.sharedMesh = _mf.sharedMesh;
-		}
-
-		public void UpdateChunk() {
-			if(!recieved) return;
-
-			float distanceFromEdge = Mathf.Sqrt(bounds.SqrDistance(viewerPosition));
-			visible = distanceFromEdge <= viewDistance;
-
-			if(visible) {
-				int index = 0;
-				for(int i = 0; i < lods.Length; i++) {
-					if(distanceFromEdge > lods[i].threshold) {
-						index = i + 1;
-					} else break;
-				}
-
-				if(index != previousLOD) {
-					LODMesh mesh = lodMeshs[index];
-					if(mesh.recieved) {
-						previousLOD = index;
-						_mf.sharedMesh = mesh.mesh;
-						_mc.sharedMesh = mesh.mesh;
-					} else if(!mesh.requested) {
-						mesh.Request(map);
-					}
+					TerrainChunk chunk = ScriptableObject.CreateInstance<TerrainChunk>();
+					chunk.init(currentChunk, chunkSize, gameObject.transform, config);
+					chunks.Add(currentChunk, chunk);
 				}
 			}
 		}

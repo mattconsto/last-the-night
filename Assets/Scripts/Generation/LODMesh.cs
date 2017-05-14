@@ -6,11 +6,11 @@ public class LODMesh {
 	public bool recieved;
 	public int lod;
 
-	private ChunkGenerator generator;
+	private GenerationConfig config;
 
-	public LODMesh(int lod, ChunkGenerator generator) {
+	public LODMesh(int lod, GenerationConfig config) {
 		this.lod = lod;
-		this.generator = generator;
+		this.config = config;;
 	}
 
 	public void OnMeshReceived(MeshData mesh) {
@@ -19,7 +19,7 @@ public class LODMesh {
 	}
 
 	public void Request(MapData map) {
-		generator.RequestMeshData(map, lod, OnMeshReceived);
+		config.generator.RequestMeshData(OnMeshReceived, config, map, lod);
 		requested = true;
 	}
 }
