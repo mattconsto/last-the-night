@@ -50,12 +50,11 @@ public class HUDController : MonoBehaviour {
 	}
 
 	public void SetHealth(float value) {
-		float temp = Mathf.Clamp01(value);
-		if(temp < _health) _hurtTime = 2;
-		_health = temp;
+		if(_health - value > 0.01) _hurtTime = 2;
+		_health = value;
 
 		// Change the opacity and width as health decreases
-		_healthText.SetAlpha(Mathf.Clamp01(_health * 10));
+		_healthText.SetAlpha(Mathf.Clamp01((1 - _health) * 50));
 		healthBar.transform.SetLocalScaleX(_health * _healthScale);
 	}
 
@@ -63,7 +62,7 @@ public class HUDController : MonoBehaviour {
 		_stamina = Mathf.Clamp01(value);
 
 		// Change the opacity and width as stamina decreases
-		_staminaText.SetAlpha(Mathf.Clamp01(_stamina * 10));
+		_staminaText.SetAlpha(Mathf.Clamp01((1 - _stamina) * 50));
 		staminaBar.transform.SetLocalScaleX(_stamina * _staminaScale);
 	}
 

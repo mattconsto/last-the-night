@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 54918795075426494}
   - component: {fileID: 135727736322727662}
   - component: {fileID: 114109393486593962}
-  - component: {fileID: 114030624310542640}
+  - component: {fileID: 114480602595283722}
   m_Layer: 0
   m_Name: Slime_Yellow
   m_TagString: Untagged
@@ -541,20 +541,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114030624310542640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014251014320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e259b2125ade9904982a3b6f656b2b2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimum: 10
-  threshold: 100
-  speed: 2000
 --- !u!114 &114109393486593962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -566,8 +552,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb9f4abe63365c499fe3ce7b97166fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
+  maxHealth: 20
   burnTime: 0
+  stamina: 10
+  healthRegen: 0.5
+  healthDecay: 0.5
+--- !u!114 &114480602595283722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014251014320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8c329887c9d9f4ead9dcd408934923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimum: 10
+  threshold: 100
+  speed: 2000
+  damage: 5
 --- !u!135 &135727736322727662
 SphereCollider:
   m_ObjectHideFlags: 1

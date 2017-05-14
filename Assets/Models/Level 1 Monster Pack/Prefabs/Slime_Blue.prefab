@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 54379002531072320}
   - component: {fileID: 135298227462414386}
   - component: {fileID: 114760039230536966}
-  - component: {fileID: 114109873147233288}
+  - component: {fileID: 114091143528536880}
   m_Layer: 0
   m_Name: Slime_Blue
   m_TagString: Untagged
@@ -541,7 +541,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114109873147233288
+--- !u!114 &114091143528536880
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -549,12 +549,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013175867634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e259b2125ade9904982a3b6f656b2b2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d8c329887c9d9f4ead9dcd408934923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minimum: 10
   threshold: 100
   speed: 2000
+  damage: 5
 --- !u!114 &114760039230536966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -566,8 +567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb9f4abe63365c499fe3ce7b97166fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
+  maxHealth: 20
   burnTime: 0
+  stamina: 10
+  healthRegen: 0.5
+  healthDecay: 0.5
 --- !u!135 &135298227462414386
 SphereCollider:
   m_ObjectHideFlags: 1
