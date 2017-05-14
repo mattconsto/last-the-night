@@ -5,8 +5,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 	public float minimum;
 	public float threshold;
-	public float speed;
-	public float damage;
+	public float speed = 1;
+	public float damage = 0;
+	public float fireDamage = 0;
+	public float fireRate = 1;
+
+	private float _cooldown = 0;
 
 	private GameObject _player;
 	private Rigidbody _rb;
@@ -17,6 +21,8 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void Update() {
+		_cooldown -= Time.deltaTime;
+
 		float distance = Vector3.Distance(transform.position, _player.transform.position);
 
 		if(distance < threshold) {
@@ -24,12 +30,11 @@ public class EnemyController : MonoBehaviour {
 				transform.LookAt(_player.transform);
 				_rb.AddForce(transform.forward * speed);
 			} else {
-				// Attack player!
+				if(_cooldown < 0) {
+					_player.GetComponent<Destructable>().OnHurt(damage, fireDamage);
+					_cooldown = fireRate;
+				}
 			}
 		}
-	}
-
-	public void OnHurt(float damage, float fire){
-		// Damage enemy
 	}
 }
