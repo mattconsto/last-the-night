@@ -15,16 +15,37 @@ public class InfiniteTerrain : MonoBehaviour {
 	private Dictionary<Vector2, TerrainChunk> chunks = new Dictionary<Vector2, TerrainChunk>();
 	private List<TerrainChunk> lastChunks = new List<TerrainChunk>();
 
+	private System.Random rng;
+	private float _spawnTimer = -1;
+
 	public void Start() {
 		viewDistance = config.lods[config.lods.Length-1].threshold;
 		chunkSize = config.resolution - 1;
 		chunksVisble = Mathf.CeilToInt(viewDistance / chunkSize);
+		rng = new System.Random(config.seed);
 		enabled = false;
 	}
 
 	public void Update() {
 		viewerPosition = new Vector2(viewer.position.x, viewer.position.z);
 		UpdateChunks();
+
+		_spawnTimer -= Time.deltaTime;
+
+		// Wandering Monster
+		if(_spawnTimer < 0) {
+			Debug.Log("Wandering Monster!");
+			_spawnTimer = rng.NextFloat(10, 30);
+
+			for(int i = 0; i < 1; i++) {
+				GameObject player = GetComponent<GameController>().player.gameObject;
+
+				GameObject monster = Instantiate(config.monsterPrefabs[rng.Next(config.monsterPrefabs.Length)]);
+				monster.transform.parent = config.monsterContainer.transform;
+				monster.transform.position = player.transform.position + new Vector3(rng.NextFloat(-20, 20), rng.NextFloat(0, 10), rng.NextFloat(-20, 20));
+				monster.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
+			}
+		}
 	}
 
 	public void UpdateChunks() {
