@@ -45,7 +45,7 @@ public class BulletController : MonoBehaviour {
 					float distance = (transform.position - player.transform.position).magnitude;
 					if(distance <= explosionRadius) {
 						float edamage = Mathf.Pow((explosionRadius - distance) / explosionRadius, explosionFalloff) * explosionDamage;
-						player.GetComponent<EnemyController>().OnHurt(edamage, 0);
+						player.GetComponent<Destructable>().OnHurt(edamage, 0);
 						player.GetComponent<Rigidbody>().AddForce(Vector3.up * knockbackForce);
 					}
 				}
@@ -55,7 +55,7 @@ public class BulletController : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision col) {
+	public void OnCollisionEnter(Collision col) {
 		bool destroy = false;
 
 		if(col.gameObject.tag == "Target") {
