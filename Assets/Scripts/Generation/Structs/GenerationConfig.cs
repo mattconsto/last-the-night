@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
-public class GenerationConfig {
+public class GenerationConfig : ICloneable {
 	/* Noise Settings */
 	[Range(1, 500)]
 	public int resolution = 129;
@@ -24,8 +25,30 @@ public class GenerationConfig {
 	public GameObject[] monsterPrefabs;
 	public GameObject[] structurePrefabs;
 	public GameObject tapePrefab;
-
 	public ChunkGenerator generator;
-
 	public GameObject monsterContainer;
+
+	public object Clone() {
+		GenerationConfig config = new GenerationConfig();
+
+		config.resolution       = this.resolution;
+		config.scale            = this.scale;
+		config.octaves          = this.octaves;
+		config.persistance      = this.persistance;
+		config.lacunarity       = this.lacunarity;
+		config.curve            = new AnimationCurve(this.curve.keys);
+		config.seed             = this.seed;
+		config.material         = new Material(this.material);
+		config.regions          = (TerrainType[]) this.regions.Clone();
+		config.lods             = (LODInfo[]) this.lods.Clone();
+		config.treePrefabs      = (GameObject[]) this.treePrefabs.Clone();
+		config.flowerPrefabs    = (GameObject[]) this.flowerPrefabs.Clone();
+		config.monsterPrefabs   = (GameObject[]) this.monsterPrefabs.Clone();
+		config.structurePrefabs = (GameObject[]) this.structurePrefabs.Clone();
+		config.tapePrefab       = this.tapePrefab;
+		config.generator        = this.generator;
+		config.monsterContainer = this.monsterContainer;
+
+		return config;
+	}
 }
