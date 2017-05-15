@@ -9,11 +9,13 @@ public class HUDController : MonoBehaviour {
 	public Text subtitlesText;
 	public Text hintText;
 	public RawImage hurtImage;
+	public RawImage blackImage;
 	public GameObject healthBar;
 	public GameObject staminaBar;
 
 	private float _subtitletime = 0;
-	private float _hurtTime = 0;
+	public float _hurtTime = 0;
+	public float _blackTime = 0;
 	private float _health = 1;
 	private float _stamina = 1;
 	private float _healthScale = 0;
@@ -32,11 +34,13 @@ public class HUDController : MonoBehaviour {
 	public void Update() {
 		_subtitletime -= Time.deltaTime;
 		_hurtTime     -= Time.deltaTime;
+		_blackTime    -= Time.deltaTime;
 
 		// Remove subtitles when their time runs out
 		if(_subtitletime < 0) subtitlesText.text = "";
 
 		// Fade out the hurt vingette
+		blackImage.SetAlpha(Mathf.Clamp01(_blackTime));
 		hurtImage.SetAlpha(Mathf.Clamp01(_hurtTime));
 	}
 
@@ -66,8 +70,8 @@ public class HUDController : MonoBehaviour {
 		staminaBar.transform.SetLocalScaleX(_stamina * _staminaScale);
 	}
 
-	public void ToggleHUDs() {
-		titleHUD.SetActive(!titleHUD.activeSelf);
-		gameHUD.SetActive(!gameHUD.activeSelf);
+	public void ToggleHUDs(bool value) {
+		titleHUD.SetActive(value);
+		gameHUD.SetActive(!value);
 	}
 }
