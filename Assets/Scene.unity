@@ -3462,7 +3462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 43428177}
-  multiplier: {x: 0.1, y: 0, z: 0}
+  multiplier: {x: 0.05, y: 0, z: 0}
   player: {fileID: 2053036844}
   time: 0
   lightFog: {r: 0.9411765, g: 0.9411765, b: 0.9411765, a: 1}
@@ -4885,8 +4885,8 @@ MonoBehaviour:
   jumpClip: {fileID: 8300000, guid: aeb5ea05042425445b381db68fac2cd7, type: 3}
   stepClip: {fileID: 8300000, guid: 15bf538afe62fc34797fd60191bf46e0, type: 3}
   torchClip: {fileID: 8300000, guid: 17907de6029a09d4693763a323a7ec96, type: 3}
-  speed: 25
-  jump: 2500
+  speed: 1
+  jump: 100000
   sensitivity: 2
   cam: {fileID: 1055743706}
   torch: {fileID: 346545658}
@@ -4903,7 +4903,7 @@ Rigidbody:
   m_GameObject: {fileID: 2053036843}
   serializedVersion: 2
   m_Mass: 75
-  m_Drag: 1
+  m_Drag: 0.1
   m_AngularDrag: 50
   m_UseGravity: 1
   m_IsKinematic: 1
@@ -4930,8 +4930,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2053036843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 0, y: 200, z: 0}
+  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
   m_Children:
   - {fileID: 1055743711}
   - {fileID: 752006715}
