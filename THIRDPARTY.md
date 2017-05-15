@@ -19,7 +19,6 @@ Third Party Notices
 * [Cyclop Soldier by BioWinter (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/27320)
 * [Fantasy Monster - Skeleton (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/35635)
 * [Fruit Pack by astro3d (Unity Asset Store)](https://www.assetstore.unity3d.com/en/#content/80254)
-* [Goblin Ranger by Sunsuke Yamamoto (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/14607)
 * [Level 1 Monsters by PI Entertainment Limited (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/77703)
 * [Lowpoly Flowers by chlyang (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/47083)
 * [Low Poly: Free Pack by AxeyWorks (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/58821)
