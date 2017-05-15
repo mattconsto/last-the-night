@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour {
     public AudioClip torchClip;
 
 	private Rigidbody _rb;
-    private float _canJump = 0;
 
 	public float speed = 1;
     public float jump = 100;
@@ -26,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     public float _distance = 0;
     public float _totalDistance = 0;
     private float _multiplier = 1;
+    private float _jumpTimer = 0;
 
     public List<GameObject> weapons = new List<GameObject>();
     public int selectedWeapon = 0;
@@ -43,24 +43,29 @@ public class PlayerController : MonoBehaviour {
 	}
 
     public void FixedUpdate() {
+        _jumpTimer -= Time.deltaTime;
+
         // Footsteps
-        if(_canJump > 0) {
-            float temp = (Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical"))) * _multiplier;
-            _distance += temp;
-            _totalDistance += temp;
-            if(_distance > 50) {
-                effectSource.PlayOneShot(stepClip, 0.25f);
-                _distance = 0;
-            }
+        float temp = (Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical"))) * _multiplier;
+        _distance += temp;
+        _totalDistance += temp;
+        if(_distance > 50) {
+            effectSource.PlayOneShot(stepClip, 0.25f);
+            _distance = 0;
         }
 
-        _rb.AddForce(transform.right * Input.GetAxis("Horizontal") * speed * _multiplier, ForceMode.Impulse);
-        _rb.AddForce(transform.forward * Input.GetAxis("Vertical") * speed * _multiplier, ForceMode.Impulse);
+        _rb.MovePosition(transform.position + transform.right * Input.GetAxis("Horizontal") * speed * _multiplier);
+        _rb.MovePosition(transform.position + transform.forward * Input.GetAxis("Vertical") * speed * _multiplier);
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity);
 
-        if(Input.GetButton("Jump") && _canJump > 0) {
-            _rb.AddForce(transform.up * jump);
-            effectSource.PlayOneShot(jumpClip, 0.5f);
+        if(Input.GetButton("Jump") && _jumpTimer < 0) {
+            // Are we on the ground?
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, -transform.up, out hit) && hit.distance < 3) {
+                _rb.AddForce(transform.up * jump);
+                effectSource.PlayOneShot(jumpClip, 0.5f);
+                _jumpTimer = 1;
+            }
         }
     }
 
@@ -139,13 +144,5 @@ public class PlayerController : MonoBehaviour {
             cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
             cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
         }
-    }
-
-    public void OnCollisionEnter(Collision col) {
-        if(col.gameObject.tag == "Jumpable") _canJump++;
-    }
-
-    public void OnCollisionExit(Collision col) {
-        if(col.gameObject.tag == "Jumpable") _canJump--;
     }
 }
