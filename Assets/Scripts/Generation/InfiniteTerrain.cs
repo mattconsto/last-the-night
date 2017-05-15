@@ -29,7 +29,12 @@ public class InfiniteTerrain : MonoBehaviour {
 	public void Update() {
 		if(_firstRun) {
 			rng = new System.Random(config.seed);
-			
+
+			config.scale.y = rng.NextFloat(20, 100);
+			config.octaves = rng.Next(2, 6);
+			config.persistance = rng.NextFloat(0.2f, 0.6f);
+			config.lacunarity = rng.NextFloat(1.5f, 3.0f);
+
 			Debug.Log("Pruning prefabs");
 			// Pick our prefabs
 			for(int i = (config.treePrefabs.Length - 1) / 2; i > 0; i--) {
@@ -46,6 +51,19 @@ public class InfiniteTerrain : MonoBehaviour {
 
 			for(int i = (config.structurePrefabs.Length - 1) / 2; i > 0; i--) {
 				config.structurePrefabs = config.structurePrefabs.RemoveAt(rng.Next(config.structurePrefabs.Length));
+			}
+
+			Debug.Log("Picking colors");
+			List<TerrainType> regions = new List<TerrainType>();
+			float threshold = 0;
+			while(threshold < 2) {
+				threshold += rng.NextFloat(0.01f, 0.3f);
+				regions.Add(new TerrainType("", threshold, rng.ColorHSV(0, 1, 0.25f, 0.75f, 0.5f, 1)));
+			}
+			config.regions = regions.ToArray();
+			for(int i = 0; i < config.materials.Length; i++) {
+				config.materials[i] = new Material(config.materials[i]);
+				config.materials[i].color = rng.ColorHSV(0, 1, 0.25f, 0.75f, 0.5f, 1);
 			}
 
 			_firstRun = false;
@@ -66,7 +84,7 @@ public class InfiniteTerrain : MonoBehaviour {
 
 				GameObject monster = Instantiate(config.monsterPrefabs[rng.Next(config.monsterPrefabs.Length)]);
 				monster.transform.parent = config.monsterContainer.transform;
-				monster.transform.position = player.transform.position + new Vector3(rng.NextFloat(-20, 20), rng.NextFloat(0, 10), rng.NextFloat(-20, 20));
+				monster.transform.position = player.transform.position + new Vector3(rng.NextFloat(-50, 50), rng.NextFloat(0, 10), rng.NextFloat(-50, 50));
 				monster.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
 			}
 		}
@@ -78,8 +96,11 @@ public class InfiniteTerrain : MonoBehaviour {
 			Mathf.RoundToInt(viewerPosition.y / (chunkSize - 2*2*4))
 		);
 
+		Debug.Log(lastCoord);
+		Debug.Log(currentChunkCoord);
+
 		if(lastCoord != currentChunkCoord) {
-			print("Update chunks.");
+			Debug.Log("Update chunks.");
 
 			for(int i = 0; i < lastChunks.Count; i++) lastChunks[i].visible = false;
 			lastChunks.Clear();

@@ -62,6 +62,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Update() {
+        // If we fall out of the level
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.up, out hit) && hit.transform.gameObject.name == "Water" && hit.transform.gameObject.name == "Terrain Chunk") {
+            Debug.Log("Found: " + hit.transform.gameObject.name);
+            transform.position = hit.point + new Vector3(0, 10, 0);
+        }
+
         // Running
         if(Input.GetButton("Fire3")) {
             GetComponent<Destructable>()._staminaTimer = 2f;
@@ -78,6 +85,7 @@ public class PlayerController : MonoBehaviour {
             runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
         }
 
+        // Torch
         if(Input.GetButtonDown("Submit")) {
             torch.SetActive(!torch.activeSelf);
             effectSource.PlayOneShot(torchClip, 0.5f);
