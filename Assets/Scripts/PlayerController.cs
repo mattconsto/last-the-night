@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
     public AudioClip torchClip;
 
 	private Rigidbody _rb;
-    private float _canJump = 0;
 
 	public float speed = 1;
     public float jump = 100;
@@ -64,8 +63,7 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-        _rb.AddForce(transform.right * Input.GetAxis("Horizontal") * speed * _multiplier, ForceMode.Impulse);
-        _rb.AddForce(transform.forward * Input.GetAxis("Vertical") * speed * _multiplier, ForceMode.Impulse);
+        _rb.MovePosition(transform.position + transform.forward * Input.GetAxis("Vertical") * speed * _multiplier + transform.right * Input.GetAxis("Horizontal") * speed * _multiplier);
 
         // transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity);
 
@@ -90,9 +88,13 @@ public class PlayerController : MonoBehaviour {
          transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
         }
 
-        if(Input.GetButton("Jump") && _canJump > 0) {
-            _rb.AddForce(transform.up * jump);
-            effectSource.PlayOneShot(jumpClip, 0.5f);
+        if(Input.GetButton("Jump") && _jumpTimer < 0) {
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, -transform.up, out hit) && hit.distance < 3) {
+                _rb.AddForce(transform.up * jump);
+                effectSource.PlayOneShot(jumpClip, 0.5f);
+                _jumpTimer = 1;
+            }
         }
     }
 
@@ -164,11 +166,5 @@ public class PlayerController : MonoBehaviour {
     //     cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
     // }
 
-    public void OnCollisionEnter(Collision col) {
-        if(col.gameObject.tag == "Jumpable") _canJump++;
-    }
 
-    public void OnCollisionExit(Collision col) {
-        if(col.gameObject.tag == "Jumpable") _canJump--;
-    }
 }
