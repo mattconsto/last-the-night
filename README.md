@@ -1,6 +1,7 @@
-Cardboard
+Last the Night
 =========
 
-A game
+After crashing on an alient planet, you have but one task, last the 
+night.
 
-![](screenshot.png)
+![](Assets/Images/background.png)
