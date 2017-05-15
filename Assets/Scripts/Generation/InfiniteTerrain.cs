@@ -77,14 +77,18 @@ public class InfiniteTerrain : MonoBehaviour {
 		// Wandering Monster
 		if(_spawnTimer < 0) {
 			Debug.Log("Wandering Monster!");
-			_spawnTimer = rng.NextFloat(10, 30);
+			_spawnTimer = rng.NextFloat(10, 20);
 
 			for(int i = 0; i < 1; i++) {
 				GameObject player = GetComponent<GameController>().player.gameObject;
 
 				GameObject monster = Instantiate(config.monsterPrefabs[rng.Next(config.monsterPrefabs.Length)]);
 				monster.transform.parent = config.monsterContainer.transform;
-				monster.transform.position = player.transform.position + new Vector3(rng.NextFloat(-50, 50), rng.NextFloat(0, 10), rng.NextFloat(-50, 50));
+				monster.transform.position = player.transform.position + new Vector3(
+					(rng.NextBool() ? 1 : -1) * rng.NextFloat(20, 100),
+					rng.NextFloat(0, 20),
+					(rng.NextBool() ? 1 : -1) * rng.NextFloat(20, 100)
+				);
 				monster.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
 			}
 		}

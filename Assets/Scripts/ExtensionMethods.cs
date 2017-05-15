@@ -38,6 +38,10 @@ public static class ExtensionMethods {
 		return (float) r.NextDouble(a, b);
 	}
 
+	public static bool NextBool(this System.Random r) {
+		return r.NextDouble() > 0.5;
+	}
+
 	public static Color ColorHSV(this System.Random r) {
 		return r.ColorHSV(0, 1, 0, 1, 0, 1);
 	}
