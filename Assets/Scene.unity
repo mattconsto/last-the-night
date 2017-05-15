@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 43428178}
-  m_IndirectSpecularColor: {r: 0.0040619024, g: 0.0002220455, b: 0.000000055939633,
+  m_IndirectSpecularColor: {r: 0.0040619043, g: 0.00022204586, b: 0.000000055939633,
     a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -287,7 +287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2053036849}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!23 &65693820
 MeshRenderer:
@@ -1028,12 +1028,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 305789362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.006, y: 1.345, z: 0.05}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.292, y: -0.692, z: 0.050000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2053036849}
-  m_RootOrder: 2
+  m_Father: {fileID: 1055743711}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &310674176
 GameObject:
@@ -2622,6 +2622,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 346545659}
+  - {fileID: 305789363}
   m_Father: {fileID: 2053036849}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5023,8 +5024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b186de479a0a7e24eaed50e968980d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hud: {fileID: 1568253744}
-  controller: {fileID: 1568253747}
   runningSource: {fileID: 1583416890}
   effectSource: {fileID: 1792144013}
   jumpClip: {fileID: 8300000, guid: aeb5ea05042425445b381db68fac2cd7, type: 3}
@@ -5035,11 +5034,19 @@ MonoBehaviour:
   sensitivity: 2
   cam: {fileID: 1055743706}
   torch: {fileID: 346545658}
+  Hand: {fileID: 305789362}
   _distance: 0
   _totalDistance: 0
   weapons:
-  - {fileID: 1494119392626386, guid: 78236a232f92b7349ad5eaec60156a2b, type: 2}
+  - {fileID: 1040764574863584, guid: 2a90f38a056b974468f18952f3207d72, type: 2}
   selectedWeapon: 0
+  axes: 0
+  sensitivityX: 2
+  sensitivityY: 2
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!54 &2053036845
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5080,7 +5087,6 @@ Transform:
   m_Children:
   - {fileID: 1055743711}
   - {fileID: 752006715}
-  - {fileID: 305789363}
   - {fileID: 65693819}
   m_Father: {fileID: 0}
   m_RootOrder: 3
