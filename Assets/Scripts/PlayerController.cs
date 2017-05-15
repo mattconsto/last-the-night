@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour {
 	public GameObject cam;
 	public GameObject torch;
 
-    private float _distance;
+    public float _distance = 0;
+    public float _totalDistance = 0;
     private float _multiplier = 1;
 
     public List<GameObject> weapons = new List<GameObject>();
@@ -44,7 +45,9 @@ public class PlayerController : MonoBehaviour {
     public void FixedUpdate() {
         // Footsteps
         if(_canJump > 0) {
-            _distance += (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical")) * _multiplier;
+            float temp = (Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical"))) * _multiplier;
+            _distance += temp;
+            _totalDistance += temp;
             if(_distance > 50) {
                 effectSource.PlayOneShot(stepClip, 0.25f);
                 _distance = 0;

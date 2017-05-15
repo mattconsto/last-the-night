@@ -252,13 +252,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 43428177}
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.3826836, y: -0, z: -0, w: -0.92387944}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 315, y: 0, z: 0}
 --- !u!1 &65693818
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +803,6 @@ GameObject:
   - component: {fileID: 167769358}
   - component: {fileID: 167769356}
   - component: {fileID: 167769357}
-  - component: {fileID: 167769362}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -970,17 +969,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 167769354}
---- !u!114 &167769362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 167769354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a746cd60cfb32249af24e4a2ffd7c03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &305034614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2988,6 +2976,7 @@ GameObject:
   - component: {fileID: 1568253746}
   - component: {fileID: 1568253745}
   - component: {fileID: 1568253747}
+  - component: {fileID: 1568253748}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -3461,6 +3450,23 @@ MonoBehaviour:
   introText: 
   introClip: {fileID: 0}
   introSource: {fileID: 1188573767}
+--- !u!114 &1568253748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1568253740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe00fce01a14cc48a3e4efe80fb2b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sun: {fileID: 43428177}
+  multiplier: {x: 0.1, y: 0, z: 0}
+  player: {fileID: 2053036844}
+  time: 0
+  lightFog: {r: 0.9411765, g: 0.9411765, b: 0.9411765, a: 1}
+  darkFog: {r: 0.14705884, g: 0.14705884, b: 0.14705884, a: 1}
 --- !u!1 &1580627844
 GameObject:
   m_ObjectHideFlags: 0
@@ -4884,6 +4890,8 @@ MonoBehaviour:
   sensitivity: 2
   cam: {fileID: 1055743706}
   torch: {fileID: 346545658}
+  _distance: 0
+  _totalDistance: 0
   weapons:
   - {fileID: 1494119392626386, guid: 78236a232f92b7349ad5eaec60156a2b, type: 2}
   selectedWeapon: 0
