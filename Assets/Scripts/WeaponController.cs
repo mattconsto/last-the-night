@@ -18,6 +18,7 @@ public class WeaponController : MonoBehaviour {
 	public float recoilForce = 0; // Upwards force on the gun
 	public float recoilTime = 0;
 	public float recoilFalloff = 0;
+	public float Bullet_Forward_Force = 1000;
 
 	public AudioClip reloadAudio;
 	public AudioClip shotAudio;
@@ -29,7 +30,7 @@ public class WeaponController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		_muzzle = transform.Find("Muzzle");
+		_muzzle = transform.Find("muzzle");
 	}
 
 	// Update is called once per frame
@@ -69,12 +70,12 @@ public class WeaponController : MonoBehaviour {
 				// Calculate Spread
 				float xr = (0.5f - Random.value) * shotSpread;
 				float zr = Random.value * 360f;
-				Vector3 velocity = Quaternion.AngleAxis(zr, -transform.right) * Quaternion.AngleAxis(xr, transform.forward) * (-transform.right * muzzleVelocity);
-
+				// Vector3 velocity = Quaternion.AngleAxis(zr, transform.forward) * Quaternion.AngleAxis(xr, transform.forward) * (-transform.right * muzzleVelocity);
 				// Fire bullet
 				var bullet = Instantiate(bulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
-				bullet.transform.Rotate(new Vector3(0, -90, 0)); // Align correctly.
-				bullet.GetComponent<Rigidbody>().velocity = velocity;
+				bullet.transform.Rotate(new Vector3(90, 0, 0)); // Align correctly.
+				bullet.GetComponent<Rigidbody>().AddForce(transform.forward * Bullet_Forward_Force);
+				// bullet.GetComponent<Rigidbody>().AddForce(velocity);
 				bullet.GetComponent<BulletController>().parent = transform.gameObject;
 			}
 

@@ -1,11 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    public HUDController hud;
-    public GameController controller;
-
     public AudioSource runningSource;
     public AudioSource effectSource;
 
@@ -14,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip torchClip;
 
 	private Rigidbody _rb;
+    private float _canJump = 0;
 
 	public float speed = 1;
     public float jump = 100;
@@ -21,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject cam;
 	public GameObject torch;
+    public GameObject Hand;
 
     public float _distance = 0;
     public float _totalDistance = 0;
@@ -30,9 +29,19 @@ public class PlayerController : MonoBehaviour {
     public List<GameObject> weapons = new List<GameObject>();
     public int selectedWeapon = 0;
 
-	public void Start() {
+    public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
+    public RotationAxes axes = RotationAxes.MouseXAndY;
+    public float sensitivityX = 2F;
+    public float sensitivityY = 2F;
+    public float minimumX = -360F;
+    public float maximumX = 360F;
+    public float minimumY = -60F;
+    public float maximumY = 60F;
+    float rotationY = 0F;
+
+	public void Start () {
 		_rb = GetComponent<Rigidbody>();
-        Transform hand = transform.Find("Hand");
+        Transform hand = Hand.transform;
 		for (int i = 0; i < weapons.Count; i++) {
             Debug.Log(weapons[0]);
 			weapons[i] = Instantiate(weapons[i], hand.transform.position, hand.transform.rotation);
@@ -54,53 +63,64 @@ public class PlayerController : MonoBehaviour {
             _distance = 0;
         }
 
-        _rb.MovePosition(transform.position + transform.right * Input.GetAxis("Horizontal") * speed * _multiplier);
-        _rb.MovePosition(transform.position + transform.forward * Input.GetAxis("Vertical") * speed * _multiplier);
-        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity);
 
-        if(Input.GetButton("Jump") && _jumpTimer < 0) {
-            // Are we on the ground?
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, -transform.up, out hit) && hit.distance < 3) {
-                _rb.AddForce(transform.up * jump);
-                effectSource.PlayOneShot(jumpClip, 0.5f);
-                _jumpTimer = 1;
-            }
+        _rb.AddForce(transform.right * Input.GetAxis("Horizontal") * speed * _multiplier, ForceMode.Impulse);
+        _rb.AddForce(transform.forward * Input.GetAxis("Vertical") * speed * _multiplier, ForceMode.Impulse);
+
+        // transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * sensitivity);
+
+        if (axes == RotationAxes.MouseXAndY)
+        {
+         float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
+
+         rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+         rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+
+         transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+        }
+        else if (axes == RotationAxes.MouseX)
+        {
+         transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+        }
+        else
+        {
+         rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+         rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+
+         transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+        }
+
+        if(Input.GetButton("Jump") && _canJump > 0) {
+            _rb.AddForce(transform.up * jump);
+            effectSource.PlayOneShot(jumpClip, 0.5f);
         }
     }
 
     public void Update() {
-        // If we fall out of the level
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.up, out hit) && hit.transform.gameObject.name == "Water" && hit.transform.gameObject.name == "Terrain Chunk") {
-            Debug.Log("Found: " + hit.transform.gameObject.name);
-            transform.position = hit.point + new Vector3(0, 10, 0);
-        }
-
         // Running
         if(Input.GetButton("Fire3")) {
-            GetComponent<Destructable>()._staminaTimer = 2f;
-            if(GetComponent<Destructable>().stamina > 0) {
-                _multiplier = 2;
-                runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
-                GetComponent<Destructable>().stamina -= Time.deltaTime;
-            } else {
-                _multiplier = 1;
-                runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
-            }
+            _multiplier = 2;
+            runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
         } else {
             _multiplier = 1;
             runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
         }
 
-        // Torch
+        if(Input.GetButton("Fire1")) {
+            OnFire(1);
+        }
+
+
         if(Input.GetButtonDown("Submit")) {
             torch.SetActive(!torch.activeSelf);
             effectSource.PlayOneShot(torchClip, 0.5f);
         }
 
-        hud.SetHealth(GetComponent<Destructable>().health/GetComponent<Destructable>().maxHealth);
-        hud.SetStamina(GetComponent<Destructable>().stamina/GetComponent<Destructable>().maxStamina);
+        #if !UNITY_EDITOR
+        if (Input.GetButtonDown("Cancel")) {
+	       Application.Quit();
+        }
+        #endif
 	}
 
     /* Event Listeners*/
@@ -139,10 +159,16 @@ public class PlayerController : MonoBehaviour {
 	// 	weapons[selectedWeapon].GetComponent<WeaponController>().Reload();
 	// }
 
-    public void LateUpdate() {
-        if(controller.state == GameController.State.PLAY) {
-            cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
-            cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
-        }
+    // public void LateUpdate() {
+    //     cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
+    //     cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
+    // }
+
+    public void OnCollisionEnter(Collision col) {
+        if(col.gameObject.tag == "Jumpable") _canJump++;
+    }
+
+    public void OnCollisionExit(Collision col) {
+        if(col.gameObject.tag == "Jumpable") _canJump--;
     }
 }
