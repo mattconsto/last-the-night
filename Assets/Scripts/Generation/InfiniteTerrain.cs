@@ -99,10 +99,7 @@ public class InfiniteTerrain : MonoBehaviour {
 			Mathf.RoundToInt(viewerPosition.x / (chunkSize - 2*2*4)),
 			Mathf.RoundToInt(viewerPosition.y / (chunkSize - 2*2*4))
 		);
-
-		Debug.Log(lastCoord);
-		Debug.Log(currentChunkCoord);
-
+		
 		if(lastCoord != currentChunkCoord) {
 			Debug.Log("Update chunks.");
 
