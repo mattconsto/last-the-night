@@ -1507,7 +1507,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e89e2f7d2536cdc45b0a35e586f82fdd, type: 3}
+    m_Font: {fileID: 12800000, guid: dc4f59becada27c409618505108f3bad, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -2168,7 +2168,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e89e2f7d2536cdc45b0a35e586f82fdd, type: 3}
+    m_Font: {fileID: 12800000, guid: dc4f59becada27c409618505108f3bad, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -4747,7 +4747,7 @@ RectTransform:
   m_GameObject: {fileID: 1901056333}
   m_LocalRotation: {x: 9.313226e-10, y: -0.00000008940697, z: -0.0000000018626451,
     w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 924002693}
@@ -4755,7 +4755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.43, y: 1.52}
+  m_AnchoredPosition: {x: 0.08, y: 0.92}
   m_SizeDelta: {x: 53, y: 61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1901056335
@@ -4778,7 +4778,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e89e2f7d2536cdc45b0a35e586f82fdd, type: 3}
+    m_Font: {fileID: 12800000, guid: dc4f59becada27c409618505108f3bad, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -4790,7 +4790,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xB7"
+  m_Text: +
 --- !u!222 &1901056336
 CanvasRenderer:
   m_ObjectHideFlags: 0
