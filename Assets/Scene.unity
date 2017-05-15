@@ -803,6 +803,7 @@ GameObject:
   - component: {fileID: 167769358}
   - component: {fileID: 167769356}
   - component: {fileID: 167769357}
+  - component: {fileID: 167769362}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -874,7 +875,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 1
-  m_CharacterLimit: 8
+  m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -969,6 +970,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 167769354}
+--- !u!114 &167769362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 167769354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a746cd60cfb32249af24e4a2ffd7c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &305034614
 GameObject:
   m_ObjectHideFlags: 0
