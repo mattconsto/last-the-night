@@ -27,6 +27,7 @@ public class GenerationConfig : ICloneable {
 	public GameObject tapePrefab;
 	public ChunkGenerator generator;
 	public GameObject monsterContainer;
+	public Material[] materials;
 
 	public object Clone() {
 		GenerationConfig config = new GenerationConfig();
@@ -48,6 +49,7 @@ public class GenerationConfig : ICloneable {
 		config.tapePrefab       = this.tapePrefab;
 		config.generator        = this.generator;
 		config.monsterContainer = this.monsterContainer;
+		config.materials        = (Material[]) this.materials.Clone();
 
 		return config;
 	}

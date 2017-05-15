@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NoiseGenerator {
 	public static float[,] GenerateNoise(GenerationConfig config, Vector2 offset) {
-		System.Random rng = new System.Random((int) (offset.x * offset.y * config.seed));
+		System.Random rng = new System.Random(config.seed);
 		Vector2[] offsets = new Vector2[config.octaves];
 
 		int width = config.resolution, height = config.resolution;

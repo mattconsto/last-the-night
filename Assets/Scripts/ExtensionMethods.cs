@@ -7,7 +7,7 @@ public static class ExtensionMethods {
 
 	public static T[] RemoveAt<T>(this T[] source, int index) {
 	    T[] dest = new T[source.Length - 1];
-	    
+
 	    if(index > 0) Array.Copy(source, 0, dest, 0, index);
 	    if(index < source.Length - 1) Array.Copy(source, index + 1, dest, index, source.Length - index - 1);
 
@@ -52,9 +52,9 @@ public static class ExtensionMethods {
 
 	public static Color ColorHSV(this System.Random r, float ha, float hb, float sa, float sb, float va, float vb) {
 		return Color.HSVToRGB(
-			r.NextFloat(ha, hb),
-			r.NextFloat(sa, sb),
-			r.NextFloat(va, vb)
+			r.NextFloat(ha, hb) % 1,
+			Mathf.Clamp01(r.NextFloat(sa, sb)),
+			Mathf.Clamp01(r.NextFloat(va, vb))
 		);
 	}
 
@@ -72,9 +72,9 @@ public static class ExtensionMethods {
 
 	public static Color ColorRGB(this System.Random r, float ra, float rb, float ga, float gb, float ba, float bb) {
 		return new Color(
-			r.NextFloat(ra, rb),
-			r.NextFloat(ga, gb),
-			r.NextFloat(ba, bb),
+			Mathf.Clamp01(r.NextFloat(ra, rb)),
+			Mathf.Clamp01(r.NextFloat(ga, gb)),
+			Mathf.Clamp01(r.NextFloat(ba, bb)),
 			1
 		);
 	}

@@ -74,7 +74,7 @@ public class TerrainChunk : ScriptableObject {
 
 		UpdateChunk();
 
-		System.Random rng = new System.Random((int) (bounds.center.x * bounds.center.z * config.seed));
+		System.Random rng = new System.Random((int) (bounds.center.x * bounds.center.z + config.seed));
 
 		for(int i = 0; i < 20; i++) {
 			int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
