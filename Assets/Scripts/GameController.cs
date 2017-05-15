@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour {
 
 	public void Into() {
 		if(state != State.INTRO) {
+			player.cam.SetActive(true);
 			hud.ToggleHUDs(false);
 			player.enabled = true;
 			Cursor.visible = false;
@@ -65,6 +66,7 @@ public class GameController : MonoBehaviour {
 
 	public void Begin() {
 		if(state != State.PLAY) {
+			player.cam.SetActive(true);
 			hud.ToggleHUDs(false);
 			player.enabled = true;
 			Cursor.visible = false;
