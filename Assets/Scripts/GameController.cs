@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour {
 	public InfiniteTerrain generator;
 	public Text seed;
 
-	public enum State {MENU, INTRO, PLAY, PAUSE, END, WIN};
+	public enum State {MENU, INTRO, PLAY, PAUSE, END, WIN, WINPAUSE};
 	public State state = State.MENU;
 
 	public string introText;
@@ -31,10 +31,11 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(Input.GetButtonDown("Cancel")) {
-			if(state == State.PLAY) {
-				Pause();
-			} else if(state == State.PAUSE) {
-				Resume();
+			switch(state) {
+				case State.PLAY:     Pause(); break;
+				case State.PAUSE:    Resume(); break;
+				case State.WIN:      WinPause(); break;
+				case State.WINPAUSE: Win(); break;
 			}
 		}
 
@@ -108,7 +109,6 @@ public class GameController : MonoBehaviour {
 			player.enabled = false;
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-			generator.enabled = false;
 			Time.timeScale = 0;
 			transform.Find("HUDs/Title HUD/Menu/Resume").gameObject.SetActive(false);
 			transform.Find("HUDs/Title HUD/Menu/Restart").gameObject.SetActive(true);
@@ -118,16 +118,25 @@ public class GameController : MonoBehaviour {
 
 	public void Win() {
 		if(state != State.WIN) {
+			hud.ToggleHUDs(false);
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+			hud.SetSubtitle("You survive the night", Mathf.Infinity);
+			Time.timeScale = 1;
+			state = State.WIN;
+		}
+	}
+
+	public void WinPause() {
+		if(state != State.WINPAUSE) {
 			hud.ToggleHUDs(true);
 			hud._hurtTime = 0;
-			player.enabled = false;
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-			generator.enabled = false;
 			Time.timeScale = 0;
 			transform.Find("HUDs/Title HUD/Menu/Resume").gameObject.SetActive(false);
 			transform.Find("HUDs/Title HUD/Menu/Restart").gameObject.SetActive(true);
-			state = State.END;
+			state = State.WINPAUSE;
 		}
 	}
 }

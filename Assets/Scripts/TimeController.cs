@@ -12,9 +12,11 @@ public class TimeController : MonoBehaviour {
 	public Color darkFog;
 
 	private Vector3 _start;
+	private GameController _controller;
 
 	public void Start() {
 		_start  = sun.transform.eulerAngles;
+		_controller = GetComponent<GameController>();
 	}
 
 	public void Update() {
@@ -23,9 +25,9 @@ public class TimeController : MonoBehaviour {
 		RenderSettings.fogColor = Color.Lerp(darkFog, lightFog, time);
 
 		// Praise the sun
-		if(time > 0.95f) {
+		if(time > 0.95f && (_controller.state != GameController.State.WIN && _controller.state != GameController.State.WINPAUSE)) {
 			Debug.Log("You win!");
-			GetComponent<GameController>().Win();
+			_controller.Win();
 		}
 	}
 }

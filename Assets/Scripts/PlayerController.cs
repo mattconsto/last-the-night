@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour {
 	// }
 
     public void LateUpdate() {
-        if(controller.state == GameController.State.PLAY) {
+        if(controller.state == GameController.State.PLAY || controller.state == GameController.State.WIN) {
             cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
             cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
         }
