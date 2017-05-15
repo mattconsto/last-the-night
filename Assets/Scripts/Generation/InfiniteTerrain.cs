@@ -17,16 +17,39 @@ public class InfiniteTerrain : MonoBehaviour {
 
 	private System.Random rng;
 	private float _spawnTimer = -1;
+	private bool _firstRun = true;
 
 	public void Start() {
+		enabled = false;
 		viewDistance = config.lods[config.lods.Length-1].threshold;
 		chunkSize = config.resolution - 1;
 		chunksVisble = Mathf.CeilToInt(viewDistance / chunkSize);
 		rng = new System.Random(config.seed);
-		enabled = false;
 	}
 
 	public void Update() {
+		if(_firstRun) {
+			Debug.Log("Pruning prefabs");
+			// Pick our prefabs
+			for(int i = (config.treePrefabs.Length - 1) / 2; i > 0; i--) {
+				config.treePrefabs = config.treePrefabs.RemoveAt(rng.Next(config.treePrefabs.Length));
+			}
+
+			for(int i = (config.flowerPrefabs.Length - 1) / 2; i > 0; i--) {
+				config.flowerPrefabs = config.flowerPrefabs.RemoveAt(rng.Next(config.flowerPrefabs.Length));
+			}
+
+			for(int i = (config.monsterPrefabs.Length - 1) / 2; i > 0; i--) {
+				config.monsterPrefabs = config.monsterPrefabs.RemoveAt(rng.Next(config.monsterPrefabs.Length));
+			}
+
+			for(int i = (config.structurePrefabs.Length - 1) / 2; i > 0; i--) {
+				config.structurePrefabs = config.structurePrefabs.RemoveAt(rng.Next(config.structurePrefabs.Length));
+			}
+
+			_firstRun = false;
+		}
+
 		viewerPosition = new Vector2(viewer.position.x, viewer.position.z);
 		UpdateChunks();
 
