@@ -14,15 +14,20 @@ public class EnemyController : MonoBehaviour {
 
 	private float _cooldown = 0;
 
+	private GameController _controller;
 	private GameObject _player;
 	private Rigidbody _rb;
 
 	public void Start() {
-		_player = FindObjectOfType<GameController>().player.gameObject;
+		_controller = FindObjectOfType<GameController>();
+		_player = _controller.player.gameObject;
 		_rb = GetComponent<Rigidbody>();
 	}
 
 	public void Update() {
+		// Stop attacking when game is over
+		if(_controller.state == GameController.State.WIN) enabled = false;
+
 		_cooldown -= Time.deltaTime;
 
 		float distance = Vector3.Distance(transform.position, _player.transform.position);

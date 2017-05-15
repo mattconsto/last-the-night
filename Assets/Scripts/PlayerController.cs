@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour {
 	// 	weapons[selectedWeapon].GetComponent<WeaponController>().Reload();
 	// }
 
+<<<<<<< HEAD
     // public void LateUpdate() {
     //     cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
     //     cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
@@ -170,5 +171,12 @@ public class PlayerController : MonoBehaviour {
 
     public void OnCollisionExit(Collision col) {
         if(col.gameObject.tag == "Jumpable") _canJump--;
+=======
+    public void LateUpdate() {
+        if(controller.state == GameController.State.PLAY || controller.state == GameController.State.WIN) {
+            cam.transform.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * sensitivity);
+            cam.transform.localEulerAngles = new Vector3((Mathf.Clamp((cam.transform.localEulerAngles.x + 90) % 360, 50, 130) + 270) % 360, 0, 0);
+        }
+>>>>>>> fc525609077ebebb824093f98ad0c9e02720a178
     }
 }
