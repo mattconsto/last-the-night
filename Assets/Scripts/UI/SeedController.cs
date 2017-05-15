@@ -11,6 +11,9 @@ public class SeedController : MonoBehaviour, ISubmitHandler {
 
 	public void Start() {
 		_field = GetComponent<InputField>();
+		int seed = new System.Random().Next(0, 10000000);
+		Debug.Log("Seed: " + seed);
+		GetComponent<InputField>().text = "" + seed;
 	}
 
 	public void Update() {
