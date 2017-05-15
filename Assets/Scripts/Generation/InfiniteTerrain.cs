@@ -15,7 +15,7 @@ public class InfiniteTerrain : MonoBehaviour {
 	private Dictionary<Vector2, TerrainChunk> chunks = new Dictionary<Vector2, TerrainChunk>();
 	private List<TerrainChunk> lastChunks = new List<TerrainChunk>();
 
-	private System.Random rng;
+	private System.Random rng = new System.Random();
 	private float _spawnTimer = -1;
 	private bool _firstRun = true;
 
@@ -24,11 +24,12 @@ public class InfiniteTerrain : MonoBehaviour {
 		viewDistance = config.lods[config.lods.Length-1].threshold;
 		chunkSize = config.resolution - 1;
 		chunksVisble = Mathf.CeilToInt(viewDistance / chunkSize);
-		rng = new System.Random(config.seed);
 	}
 
 	public void Update() {
 		if(_firstRun) {
+			rng = new System.Random(config.seed);
+			
 			Debug.Log("Pruning prefabs");
 			// Pick our prefabs
 			for(int i = (config.treePrefabs.Length - 1) / 2; i > 0; i--) {

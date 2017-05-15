@@ -3036,6 +3036,7 @@ MonoBehaviour:
     - {fileID: 1551608105014568, guid: 40423e1678ecb2f47bceef5f237f97fc, type: 2}
     - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
     - {fileID: 1913179290288502, guid: 83bdf8ccba7c6204a95c1ad6685f67e1, type: 2}
+    - {fileID: 1702780987219260, guid: 15ce03aa84700ea4a8bd9bc2f0966139, type: 2}
     tapePrefab: {fileID: 1088954884437138, guid: a60153ec9ea810e4c8b5e74b61208884,
       type: 2}
     generator: {fileID: 1568253743}
