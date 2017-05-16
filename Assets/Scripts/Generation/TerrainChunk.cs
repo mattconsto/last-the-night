@@ -28,8 +28,9 @@ public class TerrainChunk : ScriptableObject {
 	}
 
 	public static GameObject CreateGameObjectWithParent(string name, GameObject parent) {
-		GameObject go = new GameObject("Tree Container");
+		GameObject go = new GameObject(name);
 		go.transform.parent = parent.transform;
+		//go.isStatic = true;
 		return go;
 	}
 
@@ -42,7 +43,7 @@ public class TerrainChunk : ScriptableObject {
 		for(int i = 0; i < config.lods.Length; i++) lodMeshs[i] = new LODMesh(config.lods[i].lod, config);
 
 		gameObject         = CreateGameObjectWithParent("Terrain Chunk", parent);
-		treeContainer      = CreateGameObjectWithParent("TreeContainer", gameObject);
+		treeContainer      = CreateGameObjectWithParent("Tree Container", gameObject);
 		grassContainer     = CreateGameObjectWithParent("Grass Container", gameObject);
 		structureContainer = CreateGameObjectWithParent("Structure Container", gameObject);
 		tapeContainer      = CreateGameObjectWithParent("Tape Container", gameObject);
