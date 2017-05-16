@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
 
 	public enum State {MENU, INTRO, PLAY, PAUSE, END, WIN, WINPAUSE};
 	public State state = State.MENU;
+	public float difficulty = 1;
 
 	public string introText;
 	public AudioClip introClip;
@@ -27,7 +28,7 @@ public class GameController : MonoBehaviour {
 		_introTimer -= Time.deltaTime;
 
 		if(_introTimer < 0 && state == State.INTRO) {
-			Begin();
+			Begin(difficulty);
 		}
 
 		if(Input.GetButtonDown("Cancel")) {
@@ -66,8 +67,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public void Begin() {
+	public void Begin(float difficulty) {
 		if(state != State.PLAY) {
+			this.difficulty = difficulty;
 			player.cam.SetActive(true);
 			hud.ToggleHUDs(false);
 			player.enabled = true;
