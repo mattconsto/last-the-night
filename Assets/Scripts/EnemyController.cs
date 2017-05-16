@@ -11,8 +11,12 @@ public class EnemyController : MonoBehaviour {
 	public float fireRate = 1;
 	public float angle = 45;
 	public bool angel = false;
+	public bool attacking = false;
 
 	private float _cooldown = 0;
+
+	public AudioClip attackClip;
+	private AudioSource source;
 
 	private GameController _controller;
 	private TimeController _time;
@@ -24,6 +28,7 @@ public class EnemyController : MonoBehaviour {
 		_time = FindObjectOfType<TimeController>();
 		_player = _controller.player.gameObject;
 		_rb = GetComponent<Rigidbody>();
+		source = _controller.transform.Find("Sounds/Effects").GetComponent<AudioSource>();
 	}
 
 	public void Update() {
@@ -35,17 +40,22 @@ public class EnemyController : MonoBehaviour {
 		float distance = Vector3.Distance(transform.position, _player.transform.position);
 
 		if(distance < threshold) {
-			if(distance > minimum) {
+			if(distance > minimum && attacking == false) {
 				if(!angel || Vector3.Angle(_player.transform.forward, transform.position - _player.transform.position) > angle) {
+					Debug.Log("Moving");
 					transform.LookAt(_player.transform);
-					_rb.AddForce(transform.forward * speed * (1 + _time.time * _controller.difficulty));
+					_rb.AddForce(transform.forward * speed * (1 + _time.time * (1 + _controller.difficulty)));
 				}
 			} else {
+				attacking = true;
 				if(_cooldown < 0) {
-					_player.GetComponent<Destructable>().OnHurt(damage * (1 + _time.time * _controller.difficulty), fireDamage);
+					Debug.Log("Attacking");
+					_player.GetComponent<Destructable>().OnHurt(damage * (1 + _time.time * (1 + _controller.difficulty)), fireDamage);
 					_cooldown = fireRate;
+					source.PlayOneShot(attackClip, 1);
 				}
 			}
 		}
+		attacking = false;
 	}
 }

@@ -3712,8 +3712,6 @@ MonoBehaviour:
     - {fileID: 1000014251014320, guid: 529296adea5f8bb4581e098f98e62549, type: 2}
     - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
     - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
-    - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
-    - {fileID: 100000, guid: 7a93e07023f417142881f9ebea0e642b, type: 2}
     structurePrefabs:
     - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
     - {fileID: 1508929353297074, guid: 9b21216ee307a0a41979ffcddc67b7e3, type: 2}
@@ -4085,7 +4083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 43428177}
-  multiplier: {x: 0.05, y: 0, z: 0}
+  multiplier: {x: 0.01, y: 0, z: 0}
   player: {fileID: 2053036844}
   time: 0
   lightFog: {r: 1, g: 1, b: 1, a: 1}
@@ -5501,6 +5499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b186de479a0a7e24eaed50e968980d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hud: {fileID: 1568253744}
   runningSource: {fileID: 1583416890}
   effectSource: {fileID: 1792144013}
   jumpClip: {fileID: 8300000, guid: aeb5ea05042425445b381db68fac2cd7, type: 3}
@@ -5581,9 +5580,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  stamina: 10
-  maxStamina: 10
-  regenRate: 1
-  decayRate: 1
+  stamina: 7
+  maxStamina: 7
+  regenRate: 0.5
+  decayRate: 0.5
   _healthTimer: 0
   _staminaTimer: 0

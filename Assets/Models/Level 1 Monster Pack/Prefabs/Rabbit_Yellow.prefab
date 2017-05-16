@@ -755,14 +755,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8c329887c9d9f4ead9dcd408934923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimum: 15
-  threshold: 75
-  speed: 1500
-  damage: 10
+  minimum: 25
+  threshold: 100
+  speed: 10000
+  damage: 40
   fireDamage: 0
   fireRate: 1
   angle: 45
   angel: 0
+  attackClip: {fileID: 8300000, guid: 386cb9580f4999e4c99d9f6ab2400f23, type: 3}
 --- !u!114 &114838602157949416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -792,7 +793,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.025
+  m_Radius: 0.015
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137000012128804862
 SkinnedMeshRenderer:
