@@ -3723,8 +3723,15 @@ MonoBehaviour:
     - {fileID: 1179902268832386, guid: d53cb6d23fd694b4caa7e55221093622, type: 2}
     - {fileID: 1583006426582712, guid: f4b8f28456d60104d85a051531cd8f2d, type: 2}
     - {fileID: 1514710215070388, guid: dc134d3dde2715f418cad95aa911c544, type: 2}
-    tapePrefab: {fileID: 1088954884437138, guid: a60153ec9ea810e4c8b5e74b61208884,
-      type: 2}
+    tapePrefabs:
+    - {fileID: 1088954884437138, guid: 48b0dd84436f6fd46a9d9cd9586e202b, type: 2}
+    - {fileID: 1088954884437138, guid: 31e0f3ab7526f234986730e72f97e867, type: 2}
+    - {fileID: 1088954884437138, guid: 94168addbcd009e4da24c7c2194eef96, type: 2}
+    - {fileID: 1088954884437138, guid: 5b6803a8d1cc92a499933b3861d78409, type: 2}
+    - {fileID: 1088954884437138, guid: fbcbfac61401fee45a7bf59afaa0c5f1, type: 2}
+    - {fileID: 1088954884437138, guid: e101e8da8d227f346957bbc27c44a500, type: 2}
+    - {fileID: 1088954884437138, guid: 5527e930ff1ca574199de70902d065a4, type: 2}
+    - {fileID: 1088954884437138, guid: 3cee80b4837504f4bafe5b30c5f87569, type: 2}
     generator: {fileID: 1568253743}
     monsterContainer: {fileID: 580725278}
     materials:
@@ -5483,7 +5490,7 @@ GameObject:
   - component: {fileID: 2053036850}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
