@@ -37,19 +37,19 @@ public class InfiniteTerrain : MonoBehaviour {
 
 			Debug.Log("Pruning prefabs");
 			// Pick our prefabs
-			for(int i = (config.treePrefabs.Length - 1) / 2; i > 0; i--) {
+			for(int i = (config.treePrefabs.Length - 1) / 4 * 3; i > 0; i--) {
 				config.treePrefabs = config.treePrefabs.RemoveAt(rng.Next(config.treePrefabs.Length));
 			}
 
-			for(int i = (config.flowerPrefabs.Length - 1) / 2; i > 0; i--) {
+			for(int i = (config.flowerPrefabs.Length - 1) / 4 * 3; i > 0; i--) {
 				config.flowerPrefabs = config.flowerPrefabs.RemoveAt(rng.Next(config.flowerPrefabs.Length));
 			}
 
-			for(int i = (config.monsterPrefabs.Length - 1) / 2; i > 0; i--) {
+			for(int i = (config.monsterPrefabs.Length - 1) / 4 * 3; i > 0; i--) {
 				config.monsterPrefabs = config.monsterPrefabs.RemoveAt(rng.Next(config.monsterPrefabs.Length));
 			}
 
-			for(int i = (config.structurePrefabs.Length - 1) / 2; i > 0; i--) {
+			for(int i = (config.structurePrefabs.Length - 1) / 4 * 3; i > 0; i--) {
 				config.structurePrefabs = config.structurePrefabs.RemoveAt(rng.Next(config.structurePrefabs.Length));
 			}
 

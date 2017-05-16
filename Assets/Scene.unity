@@ -3365,6 +3365,10 @@ MonoBehaviour:
     - {fileID: 1380445044112216, guid: 404fe783cc253614d8ef6287e90dea24, type: 2}
     - {fileID: 1087328646115250, guid: 72734fbf0e0c9da47b457fe703e91243, type: 2}
     - {fileID: 1301083496624702, guid: 6fac5479bd652cd4bbeb0ac52f9eb6a7, type: 2}
+    - {fileID: 1233199806715410, guid: 8f91a9431af82a64f9c0a7e354e2c223, type: 2}
+    - {fileID: 1809159893167598, guid: c0911e96a6af6204d89fe059e7113af2, type: 2}
+    - {fileID: 1652958763555318, guid: fb1c187855e25824da9612b40a4b361b, type: 2}
+    - {fileID: 1386334850327586, guid: df021cf24bf148c4c9e88b69239773e7, type: 2}
     flowerPrefabs:
     - {fileID: 1398633331175556, guid: 261828370d777024fb8a35c0e96229f7, type: 2}
     - {fileID: 1564749039071212, guid: 3c218da87d32a1540b8ffbb16d0e661d, type: 2}
@@ -3373,6 +3377,11 @@ MonoBehaviour:
     - {fileID: 1502228118730820, guid: 45242bdc30e8f5346bf34d1a6cd31fd5, type: 2}
     - {fileID: 1568986962866172, guid: 00600c90c5394564baa28ea75385c5fe, type: 2}
     - {fileID: 1352417799661342, guid: 2b4689f5505bbae40952601ac53a7579, type: 2}
+    - {fileID: 1106097090201204, guid: 69fc147388a86ec4fa0e48d6e44e6526, type: 2}
+    - {fileID: 1580991176745210, guid: 92256ebcb94a7b04aa9feeb0a7935716, type: 2}
+    - {fileID: 1736673299747760, guid: b487a5286c97c0449aa01f95937f2a70, type: 2}
+    - {fileID: 1430490462772306, guid: 91f81ca690ee4da469704f9832d87d84, type: 2}
+    - {fileID: 1110928825832564, guid: a31afd3a1a715564f958a6bd04f1411f, type: 2}
     monsterPrefabs:
     - {fileID: 1000013827195344, guid: d82532fc4fd80bf4097d29efd331a0ff, type: 2}
     - {fileID: 1000011593744314, guid: 67f0474ce7d8d344fa04ba561d36d761, type: 2}
@@ -3401,6 +3410,10 @@ MonoBehaviour:
     - {fileID: 1443764487161316, guid: c174a2f21bbc73f4b90117cb495fc19b, type: 2}
     - {fileID: 1913179290288502, guid: 83bdf8ccba7c6204a95c1ad6685f67e1, type: 2}
     - {fileID: 1702780987219260, guid: 15ce03aa84700ea4a8bd9bc2f0966139, type: 2}
+    - {fileID: 1594910361055448, guid: 4032339974141f144b5072e98a4dacd4, type: 2}
+    - {fileID: 1179902268832386, guid: d53cb6d23fd694b4caa7e55221093622, type: 2}
+    - {fileID: 1583006426582712, guid: f4b8f28456d60104d85a051531cd8f2d, type: 2}
+    - {fileID: 1514710215070388, guid: dc134d3dde2715f418cad95aa911c544, type: 2}
     tapePrefab: {fileID: 1088954884437138, guid: a60153ec9ea810e4c8b5e74b61208884,
       type: 2}
     generator: {fileID: 1568253743}
