@@ -224,13 +224,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9acafb67d2382418c57ad8b969d2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1799452786124994, guid: d21602b098df6754faa752f21d8d1a68,
+  bulletPrefab: {fileID: 1090970683984834, guid: be9cdc04b8b23f8419e3371b6fd90c8d,
     type: 2}
   displayName: Shotgun
   muzzleVelocity: 1000
   fireRate: 1
-  shotCount: 1
-  shotSpread: 0
+  shotCount: 3
+  shotSpread: 0.01
   clipSize: 10
   ammoCount: 10
   reloadRate: 0.5
@@ -239,5 +239,6 @@ MonoBehaviour:
   recoilTime: 0
   recoilFalloff: 0
   Bullet_Forward_Force: 1000
+  strayFactor: 5
   reloadAudio: {fileID: 0}
   shotAudio: {fileID: 0}
