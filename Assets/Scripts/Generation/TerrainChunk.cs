@@ -138,10 +138,12 @@ public class TerrainChunk : ScriptableObject {
 			}
 		}
 
-		if(rng.NextFloat() < 0.1f) {
+		if(rng.NextFloat() < 0.05f && config.tapePrefabs.Length > 0) {
 			int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
 
-			GameObject tape = Instantiate(config.tapePrefab);
+			int position = rng.Next(config.tapePrefabs.Length);
+			GameObject tape = Instantiate(config.tapePrefabs[position]);
+			config.tapePrefabs = config.tapePrefabs.RemoveAt(position);
 			tape.transform.parent = tapeContainer.transform;
 			tape.transform.position = new Vector3(
 				bounds.center.x + 0 - bounds.size.x * ((float) (map.noise.GetLength(1) - y) / map.noise.GetLength(1) - 0.5f),
