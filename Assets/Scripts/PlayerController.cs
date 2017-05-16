@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {    
+    public HUDController hud;
+    //public GameController controller;
+
     public AudioSource runningSource;
     public AudioSource effectSource;
 
@@ -101,8 +104,15 @@ public class PlayerController : MonoBehaviour {
     public void Update() {
         // Running
         if(Input.GetButton("Fire3")) {
-            _multiplier = 2;
-            runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
+            GetComponent<Destructable>()._staminaTimer = 2f;
+            if(GetComponent<Destructable>().stamina > 0) {
+                _multiplier = 2;
+                runningSource.volume = Mathf.Lerp(runningSource.volume, 0.75f, 0.005f);
+                GetComponent<Destructable>().stamina -= Time.deltaTime;
+            } else {
+                _multiplier = 1;
+                runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
+            }
         } else {
             _multiplier = 1;
             runningSource.volume = Mathf.Lerp(runningSource.volume, 0, 0.1f);
@@ -118,11 +128,8 @@ public class PlayerController : MonoBehaviour {
             effectSource.PlayOneShot(torchClip, 0.5f);
         }
 
-        #if !UNITY_EDITOR
-        if (Input.GetButtonDown("Cancel")) {
-	       Application.Quit();
-        }
-        #endif
+        hud.SetHealth(GetComponent<Destructable>().health/GetComponent<Destructable>().maxHealth);
+        hud.SetStamina(GetComponent<Destructable>().stamina/GetComponent<Destructable>().maxStamina);
 	}
 
     /* Event Listeners*/
