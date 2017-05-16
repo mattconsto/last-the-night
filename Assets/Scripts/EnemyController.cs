@@ -15,11 +15,13 @@ public class EnemyController : MonoBehaviour {
 	private float _cooldown = 0;
 
 	private GameController _controller;
+	private TimeController _time;
 	private GameObject _player;
 	private Rigidbody _rb;
 
 	public void Start() {
 		_controller = FindObjectOfType<GameController>();
+		_time = FindObjectOfType<TimeController>();
 		_player = _controller.player.gameObject;
 		_rb = GetComponent<Rigidbody>();
 	}
@@ -36,11 +38,11 @@ public class EnemyController : MonoBehaviour {
 			if(distance > minimum) {
 				if(!angel || Vector3.Angle(_player.transform.forward, transform.position - _player.transform.position) > angle) {
 					transform.LookAt(_player.transform);
-					_rb.AddForce(transform.forward * speed);
+					_rb.AddForce(transform.forward * speed * (1 + _time.time * _controller.difficulty));
 				}
 			} else {
 				if(_cooldown < 0) {
-					_player.GetComponent<Destructable>().OnHurt(damage, fireDamage);
+					_player.GetComponent<Destructable>().OnHurt(damage * (1 + _time.time * _controller.difficulty), fireDamage);
 					_cooldown = fireRate;
 				}
 			}
