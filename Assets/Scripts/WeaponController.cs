@@ -18,7 +18,9 @@ public class WeaponController : MonoBehaviour {
 	public float recoilForce = 0; // Upwards force on the gun
 	public float recoilTime = 0;
 	public float recoilFalloff = 0;
-	public float Bullet_Forward_Force = 1000;
+	public float Bullet_Forward_Force = 10000;
+	public float strayFactor = 40;
+
 
 	public AudioClip reloadAudio;
 	public AudioClip shotAudio;
@@ -68,13 +70,25 @@ public class WeaponController : MonoBehaviour {
 		if(!_reloading && _fireTiming > fireRate && ammoCount > 0) {
 			for(int i = 0; i < shotCount; i++) {
 				// Calculate Spread
-				float xr = (0.5f - Random.value) * shotSpread;
-				float zr = Random.value * 360f;
-				// Vector3 velocity = Quaternion.AngleAxis(zr, transform.forward) * Quaternion.AngleAxis(xr, transform.forward) * (-transform.right * muzzleVelocity);
+				// float xr = (0.5f - Random.value) * shotSpread;
+				// float zr = Random.value * 360f;
+
+				float randomNumberX = Random.Range(-strayFactor, strayFactor);
+				float randomNumberY = Random.Range(-strayFactor, strayFactor);
+				float randomNumberZ = Random.Range(-strayFactor, strayFactor);
+
 				// Fire bullet
 				var bullet = Instantiate(bulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
-				bullet.transform.Rotate(new Vector3(90, 0, 0)); // Align correctly.
-				bullet.GetComponent<Rigidbody>().AddForce(transform.forward * Bullet_Forward_Force);
+				bullet.transform.Rotate(90, randomNumberY, randomNumberZ);
+				bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * 10000);
+				// bullet.GetComponent<Rigidbody>().AddForce(transform.forward * Bullet_Forward_Force);
+				// Debug.Log(transform.forward);
+				// Debug.Log(Quaternion.AngleAxis(zr, transform.forward));
+				// // Debug.Log(Quaternion.AngleAxis(xr, transform.forward));
+				// Vector3 velocity = Quaternion.AngleAxis(zr, transform.forward) * Quaternion.AngleAxis(xr, transform.forward) * (transform.forward * muzzleVelocity);
+
+
+
 				// bullet.GetComponent<Rigidbody>().AddForce(velocity);
 				bullet.GetComponent<BulletController>().parent = transform.gameObject;
 			}
