@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494119392626386}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.118719, y: -0.9260838, z: -11.1318}
+  m_LocalPosition: {x: -1.8352822, y: 6.3000083, z: 66.25601}
   m_LocalScale: {x: 16, y: 8, z: 16}
   m_Children:
   - {fileID: 4676590864135450}
@@ -236,5 +236,7 @@ MonoBehaviour:
   recoilForce: 0
   recoilTime: 0
   recoilFalloff: 0
+  Bullet_Forward_Force: 10000
+  strayFactor: 40
   reloadAudio: {fileID: 0}
   shotAudio: {fileID: 0}
