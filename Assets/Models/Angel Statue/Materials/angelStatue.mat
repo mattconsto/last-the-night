@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: angelStatue
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 58e4fd956165b5a4888100cec4e1e0e6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -21,6 +21,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: b1113e1c30577e6488aeee84842a01ff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - _Shininess: 10
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
