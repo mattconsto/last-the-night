@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour {
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
 			generator.config.seed = seed.text.Length > 0 ? Convert.ToInt32(seed.text) : 0;
+			hud.SetSeed(generator.config.seed);
 			generator.enabled = true;
 			player.GetComponent<Rigidbody>().isKinematic = false;
 			Time.timeScale = 0;
@@ -73,6 +74,7 @@ public class GameController : MonoBehaviour {
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
 			generator.config.seed = seed.text.Length > 0 ? Convert.ToInt32(seed.text) : 0;
+			hud.SetSeed(generator.config.seed);
 			Time.timeScale = 1;
 			generator.enabled = true;
 			player.GetComponent<Rigidbody>().isKinematic = false;

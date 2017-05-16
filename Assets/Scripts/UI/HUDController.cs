@@ -12,6 +12,7 @@ public class HUDController : MonoBehaviour {
 	public RawImage blackImage;
 	public GameObject healthBar;
 	public GameObject staminaBar;
+	public Text[] seedTexts;
 
 	private float _subtitletime = 0;
 	public float _hurtTime = 0;
@@ -73,5 +74,11 @@ public class HUDController : MonoBehaviour {
 	public void ToggleHUDs(bool value) {
 		titleHUD.SetActive(value);
 		gameHUD.SetActive(!value);
+	}
+
+	public void SetSeed(int seed) {
+		foreach(Text text in seedTexts) {
+			text.text = "" + seed;
+		}
 	}
 }
