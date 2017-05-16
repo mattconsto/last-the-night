@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.11764705, g: 0.11764705, b: 0.11764705, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.005
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 43428178}
-  m_IndirectSpecularColor: {r: 0.0040619043, g: 0.00022204586, b: 0.000000055939633,
+  m_IndirectSpecularColor: {r: 0.0040619024, g: 0.0002220455, b: 0.000000055939633,
     a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -3661,6 +3661,8 @@ MonoBehaviour:
       threshold: 300
     - lod: 32
       threshold: 400
+    - lod: 64
+      threshold: 500
     treePrefabs:
     - {fileID: 1425375320836030, guid: 2d95af39285c4ee4f81b72464f887773, type: 2}
     - {fileID: 1316845724705336, guid: 06cf0014431faae44b4b2d159609ed9c, type: 2}
@@ -4086,8 +4088,8 @@ MonoBehaviour:
   multiplier: {x: 0.05, y: 0, z: 0}
   player: {fileID: 2053036844}
   time: 0
-  lightFog: {r: 0.9411765, g: 0.9411765, b: 0.9411765, a: 1}
-  darkFog: {r: 0.14705884, g: 0.14705884, b: 0.14705884, a: 1}
+  lightFog: {r: 1, g: 1, b: 1, a: 1}
+  darkFog: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1580627844
 GameObject:
   m_ObjectHideFlags: 0
