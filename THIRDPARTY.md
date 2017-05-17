@@ -31,8 +31,6 @@ Third Party Notices
 
 ## Scripts
 
-* [Google VR SDK for Unity by Google (Apache 2.0)](https://developers.google.com/vr/unity/)
-* [Lowpoly Water Shaders by Trolltunga kreative (Custom Commercial, See TXT)](http://battlemaze.com/?p=153)
 * [Unity Lowpoly Shader by Pavel Kouřil (MIT)](https://github.com/pavelkouril/unity-lowpoly-shader/)
 
 ## Sound Effects
