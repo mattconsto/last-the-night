@@ -42,7 +42,6 @@ public class EnemyController : MonoBehaviour {
 		if(distance < threshold) {
 			if(distance > minimum && attacking == false) {
 				if(!angel || Vector3.Angle(_player.transform.forward, transform.position - _player.transform.position) > angle) {
-					Debug.Log("Moving");
 					transform.LookAt(_player.transform);
 					_rb.AddForce(transform.forward * speed * (1 + _time.time * (1 + _controller.difficulty)));
 				}

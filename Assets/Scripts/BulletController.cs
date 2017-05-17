@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour {
-
 	public GameObject parent = null;
-
-	public GameObject decalPrefab = null;
 
 	public float lifetime = 5; // Seconds
 
@@ -79,13 +76,6 @@ public class BulletController : MonoBehaviour {
 					player.GetComponent<Rigidbody>().AddForce(Vector3.up * knockbackForce);
 				}
 			}
-		}
-
-		if(destroy || col.gameObject.tag != "Unjumpable" && !explosionFused) {
-			if(decalPrefab != null) {
-				Instantiate(decalPrefab, col.contacts[0].point, Quaternion.FromToRotation(Vector3.forward, col.contacts[0].normal));
-			}
-			Destroy(gameObject);
 		}
 	}
 }

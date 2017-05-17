@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 114124020199144722}
   m_Layer: 0
   m_Name: Ghost_Violet
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -415,6 +415,7 @@ MonoBehaviour:
   fireRate: 1
   angle: 45
   angel: 0
+  attacking: 0
   attackClip: {fileID: 8300000, guid: ed472375911005c418b68e702f483bb0, type: 3}
 --- !u!114 &114398249877404850
 MonoBehaviour:
