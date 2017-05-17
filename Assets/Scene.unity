@@ -4084,7 +4084,7 @@ MonoBehaviour:
   state: 0
   difficulty: 1
   introText: 
-  introClip: {fileID: 0}
+  introClip: {fileID: 8300000, guid: ba5bdc82a6e76c64bbbbfcdbe2e446c6, type: 3}
   introSource: {fileID: 1188573767}
 --- !u!114 &1568253748
 MonoBehaviour:

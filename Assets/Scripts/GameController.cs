@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour {
 		_introTimer -= Time.deltaTime;
 
 		if(_introTimer < 0 && state == State.INTRO) {
+			Debug.Log("Game Start");
 			Begin(difficulty);
 		}
 
@@ -45,9 +46,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public void Into() {
+	public void Intro(float difficulty) {
 		if(state != State.INTRO) {
-			player.cam.SetActive(true);
+			this.difficulty = difficulty;
 			hud.ToggleHUDs(false);
 			player.enabled = true;
 			Cursor.visible = false;
@@ -56,21 +57,20 @@ public class GameController : MonoBehaviour {
 			hud.SetSeed(generator.config.seed);
 			generator.enabled = true;
 			player.GetComponent<Rigidbody>().isKinematic = false;
-			Time.timeScale = 0;
 			transform.Find("HUDs/Title HUD/Menu/Start").gameObject.SetActive(false);
 			transform.Find("HUDs/Title HUD/Menu/Resume").gameObject.SetActive(true);
-			_introTimer = introClip != null ? introClip.length + 1 : 5;
-			hud._blackTime = _introTimer;
-			hud.SetSubtitle(introText, _introTimer);
-			if(introClip != null && introSource != null) introSource.PlayOneShot(introClip, _introTimer);
+			_introTimer = 5;
+			hud._blackTime = _introTimer + 1;
+			if(introClip != null && introSource != null) introSource.PlayOneShot(introClip, 1);
 			state = State.INTRO;
 		}
 	}
 
 	public void Begin(float difficulty) {
 		if(state != State.PLAY) {
-			this.difficulty = difficulty;
 			player.cam.SetActive(true);
+			player.gameObject.GetComponent<Destructable>().OnHurt(25, 0);
+			this.difficulty = difficulty;
 			hud.ToggleHUDs(false);
 			player.enabled = true;
 			Cursor.visible = false;
