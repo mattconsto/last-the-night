@@ -8,10 +8,10 @@ public class StartController : MonoBehaviour, IPointerClickHandler, ISubmitHandl
 	public float difficulty;
 
 	public void OnPointerClick(PointerEventData ed) {
-		controller.Begin(difficulty);
+		controller.Intro(difficulty);
 	}
 
 	public void OnSubmit(BaseEventData ed) {
-		controller.Begin(difficulty);
+		controller.Intro(difficulty);
 	}
 }
