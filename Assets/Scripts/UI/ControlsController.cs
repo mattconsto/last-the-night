@@ -9,9 +9,17 @@ public class ControlsController : MonoBehaviour, IPointerClickHandler, ISubmitHa
 
 	public void OnPointerClick(PointerEventData ed) {
 		foreach(GameObject target in targets) target.SetActive(!target.activeSelf);
+		foreach(GameObject target in targets) {
+			if(target.activeInHierarchy && target.GetComponent<Selectable>() != null)
+				target.GetComponent<Selectable>().Select();
+		}
 	}
 
 	public void OnSubmit(BaseEventData ed) {
 		foreach(GameObject target in targets) target.SetActive(!target.activeSelf);
+		foreach(GameObject target in targets) {
+			if(target.activeInHierarchy && target.GetComponent<Selectable>() != null)
+				target.GetComponent<Selectable>().Select();
+		}
 	}
 }

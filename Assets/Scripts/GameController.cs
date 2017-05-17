@@ -93,6 +93,7 @@ public class GameController : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 			Time.timeScale = 0;
 			state = State.PAUSE;
+			hud.gameObject.transform.Find("HUDs/Title HUD/Resume/Continue").gameObject.GetComponent<Selectable>().Select();
 		}
 	}
 
@@ -117,6 +118,7 @@ public class GameController : MonoBehaviour {
 			transform.Find("HUDs/Title HUD/Menu/Resume").gameObject.SetActive(false);
 			transform.Find("HUDs/Title HUD/Menu/Restart").gameObject.SetActive(true);
 			state = State.END;
+			hud.gameObject.transform.Find("HUDs/Title HUD/Restart/Restart").gameObject.GetComponent<Selectable>().Select();
 		}
 	}
 
@@ -141,6 +143,7 @@ public class GameController : MonoBehaviour {
 			transform.Find("HUDs/Title HUD/Menu/Resume").gameObject.SetActive(false);
 			transform.Find("HUDs/Title HUD/Menu/Restart").gameObject.SetActive(true);
 			state = State.WINPAUSE;
+			hud.gameObject.transform.Find("HUDs/Title HUD/Restart/Restart").gameObject.GetComponent<Selectable>().Select();
 		}
 	}
 }
