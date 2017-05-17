@@ -19,8 +19,6 @@ public class WeaponController : MonoBehaviour {
 	public float recoilTime = 0;
 	public float recoilFalloff = 0;
 	public float Bullet_Forward_Force = 10000;
-	public float strayFactor = 40;
-
 
 	public AudioClip reloadAudio;
 	public AudioClip shotAudio;
@@ -32,7 +30,7 @@ public class WeaponController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		_muzzle = transform.Find("muzzle");
+		_muzzle = transform.Find("Muzzle");
 	}
 
 	// Update is called once per frame
@@ -73,9 +71,9 @@ public class WeaponController : MonoBehaviour {
 				// float xr = (0.5f - Random.value) * shotSpread;
 				// float zr = Random.value * 360f;
 
-				float randomNumberX = Random.Range(-strayFactor, strayFactor);
-				float randomNumberY = Random.Range(-strayFactor, strayFactor);
-				float randomNumberZ = Random.Range(-strayFactor, strayFactor);
+				//float randomNumberX = Random.Range(-shotSpread, shotSpread);
+				float randomNumberY = Random.Range(-shotSpread, shotSpread);
+				float randomNumberZ = Random.Range(-shotSpread, shotSpread);
 
 				// Fire bullet
 				var bullet = Instantiate(bulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);

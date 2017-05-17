@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour {
 			player.GetComponent<Rigidbody>().isKinematic = false;
 			transform.Find("HUDs/Title HUD/Menu/Start").gameObject.SetActive(false);
 			transform.Find("HUDs/Title HUD/Menu/Resume").gameObject.SetActive(true);
-			_introTimer = 5;
+			_introTimer = 4.5f;
 			hud._blackTime = _introTimer + 1;
 			if(introClip != null && introSource != null) introSource.PlayOneShot(introClip, 1);
 			state = State.INTRO;

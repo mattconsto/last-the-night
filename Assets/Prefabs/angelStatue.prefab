@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 114397344023826752}
   m_Layer: 0
   m_Name: angelStatue
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   fireRate: 1
   angle: 45
   angel: 1
+  attacking: 0
   attackClip: {fileID: 8300000, guid: 27618240e84cfe34698f2b8a5d51b03d, type: 3}
-  source: {fileID: 0}
 --- !u!114 &114717894073531734
 MonoBehaviour:
   m_ObjectHideFlags: 1

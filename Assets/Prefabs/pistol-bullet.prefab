@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4508881477968764}
   - component: {fileID: 54187054916665038}
+  - component: {fileID: 114776622917794132}
+  - component: {fileID: 136865245580163576}
   m_Layer: 0
   m_Name: pistol-bullet
   m_TagString: Untagged
@@ -81,8 +83,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1292435760772502}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 38.52751, y: 6.2999954, z: -38.002995}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4456534234346908}
   - {fileID: 4780427308016268}
@@ -196,3 +198,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114776622917794132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1292435760772502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b1e43b60932c245850d76b6fa65001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  lifetime: 5
+  bulletDamage: 50
+  damageFalloff: 2
+  damageMinimum: 0
+  damageSpread: 2
+  explosionDamage: 1
+  explosionFalloff: 1
+  explosionRadius: 1
+  explosionFused: 0
+  knockbackForce: 0
+  criticalChance: 0
+  criticalMultiplier: 0
+  incindiaryTime: 0
+--- !u!136 &136865245580163576
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1292435760772502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.01
+  m_Height: 0.025
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
