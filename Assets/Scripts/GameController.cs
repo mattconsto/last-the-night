@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour {
 
 	public enum State {MENU, INTRO, PLAY, PAUSE, END, WIN, WINPAUSE};
 	public State state = State.MENU;
-	public float difficulty = 1;
 
 	public string introText;
 	public AudioClip introClip;
@@ -29,7 +28,7 @@ public class GameController : MonoBehaviour {
 
 		if(_introTimer < 0 && state == State.INTRO) {
 			Debug.Log("Game Start");
-			Begin(difficulty);
+			Begin(generator.config.difficulty);
 		}
 
 		if(Input.GetButtonDown("Cancel")) {
@@ -48,13 +47,14 @@ public class GameController : MonoBehaviour {
 
 	public void Intro(float difficulty) {
 		if(state != State.INTRO) {
-			this.difficulty = difficulty;
+			generator.config.difficulty = difficulty;
 			hud.ToggleHUDs(false);
 			player.enabled = true;
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
 			generator.config.seed = seed.text.Length > 0 ? Convert.ToInt32(seed.text) : 0;
 			hud.SetSeed(generator.config.seed);
+			Time.timeScale = 1;
 			generator.enabled = true;
 			player.GetComponent<Rigidbody>().isKinematic = false;
 			transform.Find("HUDs/Title HUD/Menu/Start").gameObject.SetActive(false);
@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour {
 		if(state != State.PLAY) {
 			player.cam.SetActive(true);
 			player.gameObject.GetComponent<Destructable>().OnHurt(25, 0);
-			this.difficulty = difficulty;
+			generator.config.difficulty = difficulty;
 			hud.ToggleHUDs(false);
 			player.enabled = true;
 			Cursor.visible = false;

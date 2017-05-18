@@ -25,7 +25,7 @@ public class TimeController : MonoBehaviour {
 		RenderSettings.fogColor = Color.Lerp(darkFog, lightFog, Mathf.Clamp01(time * 10 - 2));
 
 		// Praise the sun
-		if(time > 0.95f && (_controller.state != GameController.State.WIN && _controller.state != GameController.State.WINPAUSE)) {
+		if(time > 0.60f && (_controller.state != GameController.State.WIN && _controller.state != GameController.State.WINPAUSE)) {
 			Debug.Log("You win!");
 			_controller.Win();
 		}

@@ -30,8 +30,8 @@ public class InfiniteTerrain : MonoBehaviour {
 		if(_firstRun) {
 			rng = new System.Random(config.seed);
 
-			config.scale.y = rng.NextFloat(20, 100);
-			config.octaves = rng.Next(2, 6);
+			config.scale.y = rng.NextFloat(25, 75);
+			config.octaves = rng.Next(2, 5);
 			config.persistance = rng.NextFloat(0.2f, 0.6f);
 			config.lacunarity = rng.NextFloat(1.5f, 3.0f);
 
@@ -85,9 +85,9 @@ public class InfiniteTerrain : MonoBehaviour {
 				GameObject monster = Instantiate(config.monsterPrefabs[rng.Next(config.monsterPrefabs.Length)]);
 				monster.transform.parent = config.monsterContainer.transform;
 				monster.transform.position = player.transform.position + new Vector3(
-					(rng.NextBool() ? 1 : -1) * rng.NextFloat(20, 100),
+					(rng.NextBool() ? 1 : -1) * rng.NextFloat(100, 200),
 					rng.NextFloat(0, 20),
-					(rng.NextBool() ? 1 : -1) * rng.NextFloat(20, 100)
+					(rng.NextBool() ? 1 : -1) * rng.NextFloat(100, 200)
 				);
 				monster.transform.rotation = Quaternion.Euler(0, rng.NextFloat(360), 0);
 			}

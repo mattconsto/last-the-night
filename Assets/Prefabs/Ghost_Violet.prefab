@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimum: 25
-  threshold: 100
+  threshold: 75
   speed: 7000
   damage: 50
   fireDamage: 0

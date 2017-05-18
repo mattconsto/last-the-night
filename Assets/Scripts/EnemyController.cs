@@ -43,13 +43,13 @@ public class EnemyController : MonoBehaviour {
 			if(distance > minimum && attacking == false) {
 				if(!angel || Vector3.Angle(_player.transform.forward, transform.position - _player.transform.position) > angle) {
 					transform.LookAt(_player.transform);
-					_rb.AddForce(transform.forward * speed * (1 + _time.time * (1 + _controller.difficulty)));
+					_rb.AddForce(transform.forward * speed * (1 + _time.time * (1 + _controller.generator.config.difficulty)));
 				}
 			} else {
 				attacking = true;
 				if(_cooldown < 0) {
 					Debug.Log("Attacking");
-					_player.GetComponent<Destructable>().OnHurt(damage * (1 + _time.time * (1 + _controller.difficulty)), fireDamage);
+					_player.GetComponent<Destructable>().OnHurt(damage * (1 + _time.time * (1 + _controller.generator.config.difficulty)), fireDamage);
 					_cooldown = fireRate;
 					source.PlayOneShot(attackClip, 1);
 				}
