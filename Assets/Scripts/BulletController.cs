@@ -77,5 +77,9 @@ public class BulletController : MonoBehaviour {
 				}
 			}
 		}
+
+		if(destroy) {
+			Destroy(gameObject);
+		}
 	}
 }

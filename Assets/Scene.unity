@@ -3642,6 +3642,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 0
     seed: 0
+    difficulty: 0
     material: {fileID: 2100000, guid: 18c659b4ca172f94aa11ef18892f3f7d, type: 2}
     regions:
     - name: Sand
@@ -4082,7 +4083,6 @@ MonoBehaviour:
   generator: {fileID: 1568253741}
   seed: {fileID: 167769360}
   state: 0
-  difficulty: 1
   introText: 
   introClip: {fileID: 8300000, guid: ba5bdc82a6e76c64bbbbfcdbe2e446c6, type: 3}
   introSource: {fileID: 1188573767}
@@ -4357,6 +4357,10 @@ Prefab:
     - target: {fileID: 4715828981437588, guid: 5864d2a691ef16a4bb4e448becd10167, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820187211630338, guid: 5864d2a691ef16a4bb4e448becd10167, type: 2}
+      propertyPath: m_Name
+      value: Space Ship
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5864d2a691ef16a4bb4e448becd10167, type: 2}

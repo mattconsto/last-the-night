@@ -15,6 +15,7 @@ public class GenerationConfig : ICloneable {
 	public float lacunarity = 1f;
 	public AnimationCurve curve;
 	public int seed = 0;
+	public float difficulty = 0;
 
 	/* Resources */
 	public Material material;
@@ -39,6 +40,7 @@ public class GenerationConfig : ICloneable {
 		config.lacunarity       = this.lacunarity;
 		config.curve            = new AnimationCurve(this.curve.keys);
 		config.seed             = this.seed;
+		config.difficulty       = this.difficulty;
 		config.material         = new Material(this.material);
 		config.regions          = (TerrainType[]) this.regions.Clone();
 		config.lods             = (LODInfo[]) this.lods.Clone();
