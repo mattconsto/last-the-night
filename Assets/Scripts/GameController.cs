@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour {
 			hud.ToggleHUDs(false);
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
-			hud.SetSubtitle("You survive the night", Mathf.Infinity);
+			hud.SetSubtitle("You Last the Night", Mathf.Infinity);
 			Time.timeScale = 1;
 			state = State.WIN;
 		}
