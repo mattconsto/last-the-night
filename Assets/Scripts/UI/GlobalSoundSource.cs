@@ -9,6 +9,7 @@ public class GlobalSoundSource : MonoBehaviour, IPointerClickHandler, ISubmitHan
 	public float       volume = 1f;
 
 	public void OnPointerClick(PointerEventData ed) {
+		// Boom
 		source.PlayOneShot(clip, volume);
 	}
 

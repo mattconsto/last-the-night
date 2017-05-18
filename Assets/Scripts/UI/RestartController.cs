@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class RestartController : MonoBehaviour, IPointerClickHandler, ISubmitHandler {
 	public void OnPointerClick(PointerEventData ed) {
+		// Restart
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 

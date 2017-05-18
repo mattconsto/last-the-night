@@ -7,6 +7,7 @@ public class DeathTrigger : MonoBehaviour {
 	public AudioSource source;
 
 	public void OnTriggerEnter(Collider col) {
+		// Play sound effect and kill target
 		if(source != null && clip != null) source.PlayOneShot(clip, 1);
 		col.gameObject.SetActive(false);
 	}

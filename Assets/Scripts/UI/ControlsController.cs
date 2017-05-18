@@ -8,18 +8,23 @@ public class ControlsController : MonoBehaviour, IPointerClickHandler, ISubmitHa
 	public GameObject[] targets;
 
 	public void OnPointerClick(PointerEventData ed) {
+		// Toggle visibilty, and then select a target.
 		foreach(GameObject target in targets) target.SetActive(!target.activeSelf);
 		foreach(GameObject target in targets) {
-			if(target.activeInHierarchy && target.GetComponent<Selectable>() != null)
+			if(target.activeInHierarchy && target.GetComponent<Selectable>() != null) {
 				target.GetComponent<Selectable>().Select();
+				break;
+			}
 		}
 	}
 
 	public void OnSubmit(BaseEventData ed) {
 		foreach(GameObject target in targets) target.SetActive(!target.activeSelf);
 		foreach(GameObject target in targets) {
-			if(target.activeInHierarchy && target.GetComponent<Selectable>() != null)
+			if(target.activeInHierarchy && target.GetComponent<Selectable>() != null) {
 				target.GetComponent<Selectable>().Select();
+				break;
+			}
 		}
 	}
 }
