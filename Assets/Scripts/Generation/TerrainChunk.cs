@@ -30,7 +30,6 @@ public class TerrainChunk : ScriptableObject {
 	public static GameObject CreateGameObjectWithParent(string name, GameObject parent) {
 		GameObject go = new GameObject(name);
 		go.transform.parent = parent.transform;
-		//go.isStatic = true;
 		return go;
 	}
 
@@ -123,7 +122,7 @@ public class TerrainChunk : ScriptableObject {
 		}
 
 		// Don't spawn monsters on top of players
-		if(rng.NextFloat() < 0.5f + config.difficulty * 0.25f && Mathf.Sqrt(bounds.SqrDistance(InfiniteTerrain.viewerPosition)) > 400) {
+		if(rng.NextFloat() < 0.25f + config.difficulty * 0.50f && Mathf.Sqrt(bounds.SqrDistance(InfiniteTerrain.viewerPosition)) > 300) {
 			int y = rng.Next(map.noise.GetLength(0)), x = rng.Next(map.noise.GetLength(1));
 
 			if(map.noise[y, x] > 0.4f && map.noise[y, x] < 0.85f) {

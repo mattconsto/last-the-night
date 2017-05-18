@@ -9,7 +9,6 @@ Third Party Notices
 ## Fonts
 
 * [Font Awesome by Dave Gandy (SIL OFL 1.1)](http://fontawesome.io/)
-* [Permanent Marker by Font Diner (Apache 2.0)](https://fonts.google.com/specimen/Permanent+Marker)
 
 ## Models
 
@@ -23,7 +22,6 @@ Third Party Notices
 * [Lowpoly Flowers by chlyang (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/47083)
 * [Low Poly: Free Pack by AxeyWorks (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/58821)
 * [Low Poly RPG Item Pack by Fi Silva (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/76088)
-* [Monster 3 by 3DMaesen (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/48933)
 * [Simple Gems Ultimate Animated Customizable Pack by AurynSky (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/73764)
 * [Space Shooter by Unity Technologies (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/13866)
 * [Spider Green by PolyNext (Unity Asset Store)](https://www.assetstore.unity3d.com/en/content/11869)

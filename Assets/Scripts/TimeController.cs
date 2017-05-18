@@ -20,6 +20,7 @@ public class TimeController : MonoBehaviour {
 	}
 
 	public void Update() {
+		// Change time as player moves
 		sun.transform.eulerAngles = _start + multiplier * player._totalDistance;
 		time = Mathf.Sin((sun.transform.eulerAngles.x % 360) * Mathf.Deg2Rad);
 		RenderSettings.fogColor = Color.Lerp(darkFog, lightFog, Mathf.Clamp01(time * 10 - 2));

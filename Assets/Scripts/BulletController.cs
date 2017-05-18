@@ -66,7 +66,6 @@ public class BulletController : MonoBehaviour {
 
 		if(explosionRadius > 0) {
 			// Find enemies within radius
-
 			GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
 			foreach(GameObject player in targets) {
 				float distance = (col.contacts[0].point - player.transform.position).magnitude;
@@ -78,8 +77,6 @@ public class BulletController : MonoBehaviour {
 			}
 		}
 
-		if(destroy) {
-			Destroy(gameObject);
-		}
+		if(destroy) Destroy(gameObject);
 	}
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class QuitController : MonoBehaviour, IPointerClickHandler, ISubmitHandler {
 	public void OnPointerClick(PointerEventData ed) {
+		// Quit the application
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#else

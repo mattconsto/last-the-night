@@ -4,13 +4,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ResumeController : MonoBehaviour, IPointerClickHandler, ISubmitHandler {
-	public GameController controller;
+	private GameController _controller;
+
+	public void Start() {
+		_controller = FindObjectOfType<GameController>();
+	}
 
 	public void OnPointerClick(PointerEventData ed) {
-		controller.Resume();
+		_controller.Resume();
 	}
 
 	public void OnSubmit(BaseEventData ed) {
-		controller.Resume();
+		_controller.Resume();
 	}
 }

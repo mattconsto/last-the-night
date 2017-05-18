@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class StartController : MonoBehaviour, IPointerClickHandler, ISubmitHandler {
-	public GameController controller;
+	private GameController _controller;
 	public float difficulty;
 
+	public void Start() {
+		_controller = FindObjectOfType<GameController>();
+	}
+
 	public void OnPointerClick(PointerEventData ed) {
-		controller.Intro(difficulty);
+		// Start the game with selected difficulty
+		_controller.Intro(difficulty);
 	}
 
 	public void OnSubmit(BaseEventData ed) {
-		controller.Intro(difficulty);
+		_controller.Intro(difficulty);
 	}
 }

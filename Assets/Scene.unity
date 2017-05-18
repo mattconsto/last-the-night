@@ -1427,7 +1427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880fdc7f584410048842e4eaa98abcce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1568253747}
   difficulty: 1
 --- !u!114 &390428131
 MonoBehaviour:
@@ -2530,7 +2529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8201dbd35c445bd48914bc9b63be086b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1568253747}
 --- !u!114 &1000935174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3330,7 +3328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880fdc7f584410048842e4eaa98abcce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1568253747}
   difficulty: 0.5
 --- !u!114 &1361953652
 MonoBehaviour:
@@ -4362,6 +4359,11 @@ Prefab:
       propertyPath: m_Name
       value: Space Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 114705575357331720, guid: 5864d2a691ef16a4bb4e448becd10167,
+        type: 2}
+      propertyPath: offset.y
+      value: -5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5864d2a691ef16a4bb4e448becd10167, type: 2}
   m_IsPrefabParent: 0
@@ -4732,7 +4734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880fdc7f584410048842e4eaa98abcce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1568253747}
   difficulty: 0
 --- !u!1 &1714743396
 GameObject:
@@ -5580,7 +5581,6 @@ MonoBehaviour:
   torchClip: {fileID: 8300000, guid: 17907de6029a09d4693763a323a7ec96, type: 3}
   speed: 1
   jump: 100000
-  sensitivity: 2
   cam: {fileID: 1055743706}
   torch: {fileID: 346545658}
   Hand: {fileID: 305789362}
@@ -5589,9 +5589,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 1494119392626386, guid: 78236a232f92b7349ad5eaec60156a2b, type: 2}
   selectedWeapon: 0
-  axes: 0
-  sensitivityX: 2
-  sensitivityY: 2
+  sensitivityX: 1.5
+  sensitivityY: 1.5
   minimumX: -360
   maximumX: 360
   minimumY: -60

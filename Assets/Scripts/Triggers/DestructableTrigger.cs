@@ -12,6 +12,7 @@ public class DestructableTrigger : MonoBehaviour {
 	public GameObject destroy;
 
 	public void OnCollisionEnter(Collision col) {
+		// Destroy either self or set target
 		if((objects.Length == 0 || System.Array.IndexOf(objects, col.gameObject) != -1) && col.impulse.magnitude >= impulse) {
 			if(source != null && clip != null) source.PlayOneShot(clip, 1);
 			if(destroy != null) {

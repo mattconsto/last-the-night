@@ -61,10 +61,6 @@ public class InfiniteTerrain : MonoBehaviour {
 				regions.Add(new TerrainType("", threshold, rng.ColorHSV(0, 1, 0.25f, 0.75f, 0.5f, 1)));
 			}
 			config.regions = regions.ToArray();
-			/*for(int i = 0; i < config.materials.Length; i++) {
-				config.materials[i] = new Material(config.materials[i]);
-				config.materials[i].color = rng.ColorHSV(0, 1, 0.25f, 0.75f, 0.5f, 1);
-			}*/
 
 			_firstRun = false;
 		}

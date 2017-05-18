@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TextNode : MonoBehaviour {
-	protected HUDController _hud;
+	private HUDController _hud;
 
 	public string text = "";
 	public string hint = "";
@@ -16,6 +16,7 @@ public class TextNode : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter(Collider col) {
+		// When we collide with player, play text.
 		if(col.gameObject.tag == "Player" && uses != 0) {
 			if(text != "") _hud.SetSubtitle(text, time);
 			if(hint != "") _hud.SetHint(hint);

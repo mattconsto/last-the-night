@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Manages queues
 public class ChunkGenerator : MonoBehaviour {
 	private Queue<ThreadData<MapData>>  mapQueue  = new Queue<ThreadData<MapData>>();
 	private Queue<ThreadData<MeshData>> meshQueue = new Queue<ThreadData<MeshData>>();
@@ -11,7 +12,6 @@ public class ChunkGenerator : MonoBehaviour {
 	public void RequestMapData(Action<MapData> callback, GenerationConfig config, Vector2 offset) {
 		ThreadStart thread = delegate {
 			float[,] noise  = NoiseGenerator.GenerateNoise(config, offset);
-			//float[,] biomes = NoiseGenerator.GenerateNoise(config, offset);
 			Color[]  colors = TextureGenerator.DrawColor(noise, config.regions);
 			MapData  data   = new MapData(noise, colors);
 			lock(mapQueue) {

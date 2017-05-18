@@ -12,6 +12,7 @@ public class RandomPlayback : MonoBehaviour {
 	public void Start() {
 		_source = GetComponent<AudioSource>();
 
+		// Start the track from a random place
 		if(_source != null) {
 			if(random) _source.time = new System.Random().NextFloat(_source.clip.length);
 			_source.volume = 0;
@@ -21,6 +22,7 @@ public class RandomPlayback : MonoBehaviour {
 	}
 
 	public void Update() {
+		// Fade in
 		_timer -= Time.deltaTime;
 		if(_source != null) _source.volume = 1 - _timer / fadeTime;
 		if(_timer < 0) enabled = false;
