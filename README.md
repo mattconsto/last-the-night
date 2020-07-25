@@ -7,4 +7,4 @@ With seed based world generation, there are literally millions of planets to exp
 
 Do you think you’re brave enough to last the night?
 
-![](Assets/Images/background.png)
+[![](Assets/Images/background.png)](https://consto.itch.io/last-the-night)
